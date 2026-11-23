@@ -1,0 +1,19 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.500 line:10% position:50% align:center size:88%
+<c.operation>从首页打开商品搜索。</c>
+
+00:00:02.500 --> 00:00:04.800 line:10% position:50% align:center size:88%
+<c.operation>点「水果」，查看三款商品。</c>
+
+00:00:04.800 --> 00:00:07.200 line:10% position:50% align:center size:88%
+<c.operation>切换到「店铺」。</c>
+
+00:00:07.200 --> 00:00:09.700 line:10% position:50% align:center size:88%
+<c.operation>进入美生活自营店。</c>
+
+00:00:09.700 --> 00:00:15.000 line:10% position:50% align:center size:88%
+<c.operation>向上滑动，浏览水果和海鲜。</c>

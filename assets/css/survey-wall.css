@@ -1,0 +1,61 @@
+survey-wall {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  contain: layout paint;
+  background: linear-gradient(125deg, #edf0f4 0%, #f5f5f7 50%, #edf0f3 100%);
+}
+.survey-wall-sheet {
+  position: absolute;
+  left: 50%; top: 50%; width: 0; height: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+survey-wall:not([data-ready]) .survey-wall-sheet { visibility: hidden; }
+survey-wall > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+survey-wall[data-ready] > img { display: none; }
+survey-wall[data-running] .survey-wall-sheet { will-change: transform; }
+/* Art has its own coordinates; a portfolio tile's ordinary image fit must not resize it. */
+.survey-wall-row { position: absolute; }
+survey-wall .survey-wall-row > img.survey-wall-board {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 960px; height: 640px;
+  max-width: none; max-height: none;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 3px rgb(39 49 66 / 9%), 0 9px 24px -12px rgb(39 49 66 / 17%), 0 0 0 1px rgb(52 67 91 / 8%);
+  object-fit: contain;
+  transform: none;
+  user-select: none; pointer-events: none;
+}
+#hr .hr-tile--survey-wall {
+  width: min(88vw, 126cqh);
+  background: #eff1f5;
+}
+#hr .hr-tile--survey-wall figcaption {
+  position: absolute; left: clamp(14px, 2.3vw, 32px); bottom: clamp(14px, 2.3vw, 32px);
+  padding: 0; margin: 0; color: #1e2b3f;
+}
+.survey-wall-link {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 42px; padding: 7px 15px;
+  background: rgb(255 255 255 / 96%); border: 1px solid #d3d9e1; border-radius: 28px;
+  color: #1e2b3f; text-decoration: none; font-weight: 600;
+  box-shadow: 0 2px 6px rgb(26 38 60 / 8%);
+}
+.survey-wall-link:hover { background: #fff; color: #304dc3; }
+.survey-wall-link:focus-visible { outline: 2px solid #304dc3; outline-offset: 3px; }
+@media (max-width: 640px) { #hr .hr-tile--survey-wall { width: 91vw; } }
+
+/* Fit the complete film composition inside a portrait card. The surrounding rail still fills the viewport. */
+@container (max-aspect-ratio: 5/4) {
+  #hr survey-wall.hr-survey-film[data-card-preview="film"] {
+    grid-row: 2;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}

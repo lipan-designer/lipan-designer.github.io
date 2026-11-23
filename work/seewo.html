@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>希沃 · 教育白板 Launcher — 李盼作品集</title>
+<meta name="description" content="为 85 寸教室触控大屏重做 Launcher：需求分析、用户画像、风格探索与深浅双模式界面。">
+<meta name="author" content="李盼">
+<meta name="theme-color" content="#fafafa">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="希沃 · 教育白板 Launcher — 李盼作品集">
+<meta property="og:description" content="为 85 寸教室触控大屏重做 Launcher：需求分析、用户画像、风格探索与深浅双模式界面。">
+<meta property="og:image" content="../assets/img/og.jpg">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css?v=20261122a">
+<link rel="stylesheet" href="../assets/css/seewo-preview.css?v=20261123a">
+<script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<header class="nav">
+  <a class="nav__logo" href="../index.html" aria-label="李盼 · 首页">Lp</a>
+  <nav class="nav__pill" aria-label="主导航">
+    <a href="../index.html#work" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg><span>作品</span></a>
+    <a href="../playground.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg><span>插画</span></a>
+    <a href="../about.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg><span>关于</span></a>
+    <a href="../assets/lipan-resume.pdf" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>简历</span></a>
+    <span class="nav__sep" aria-hidden="true"></span><button class="nav__lang" type="button" data-lang-toggle data-i18n-skip lang="en" aria-label="Switch to English">EN</button>
+  </nav>
+  <button class="nav__theme" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" data-tip="深色模式" data-label-light="切换到深色模式" data-label-dark="切换到浅色模式" data-tip-light="深色模式" data-tip-dark="浅色模式"><svg class="icon i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="icon i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button>
+  <a class="nav__mail" href="mailto:15510087928@163.com" aria-label="发邮件给李盼" data-tip="15510087928@163.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+</header>
+<main class="page">
+<section class="cs-hero" style="--g1:#d5f5df;--g2:#e9e3ff;--accent:#22b455">
+  <img src="../assets/img/seewo/icon-big.webp" alt="希沃白板图标设计" width="700" height="593" class="cs-hero__icon cs-hero__icon--pad">
+  <p class="cs-hero__kicker">希沃 Seewo · 教育白板 Launcher — 2020</p>
+  <h1 class="cs-hero__title serif">为 85 寸教室大屏重做 Launcher，<br>老师上手快，学生也够得着</h1>
+  <div class="cs-wrap">
+    <div class="cs-intro reveal">
+      <div><p class="label">Intro · 项目背景</p><div class="prose"><p>希沃白板是专为老师打造的<b>互动教学平台</b>，针对信息化教学场景，提供课件制作、互动授课、在线课堂、微课录制、课件资源库等功能，让老师一站式完成教学的主要环节。</p><p>我<b>独立负责 Launcher 优化项目</b>的设计与对接，从需求分析、用户画像、风格探索到深浅双模式界面，让它更符合中小学的真实教学场景。</p></div></div>
+      <aside class="cs-meta"><p class="label">Role · 角色</p><ul class="chips"><li>UI 设计师（独立负责）</li></ul><p class="label">Timeline · 时间</p><ul class="chips"><li>2020.06 – 2020.10</li></ul><p class="label">Platform · 平台</p><ul class="chips"><li>85 寸触控交互大屏</li><li>Android</li></ul><p class="label">Company · 公司</p><ul class="chips"><li>CVTE 视源股份</li></ul></aside>
+    </div>
+    <div class="cs-cards"><article class="cs-card reveal"><span class="cs-card__icon" style="--c:#fde68a"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg></span><h3>问题</h3><p>教室里的 85 寸触控大屏，既要让老师<b>流畅播放课件、书写板书</b>，又要让<b>身高不同的学生</b>也能参与互动；同时还要考虑<b>长时间亮屏的耗电</b>，以及教室光线下的清晰可读。</p></article><article class="cs-card reveal"><span class="cs-card__icon" style="--c:#bfdbfe"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.86.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.86z"/></svg></span><h3>方案</h3><p>从需求分析与用户画像出发，确立<b>「成长 · 童趣 · 活力」</b>的视觉方向；用<b>大圆角、毛玻璃、轻质感</b>塑造亲和力；按<b>人体工程学</b>重新规划左右卡片布局与图标位置；提供<b>深色 / 浅色双模式</b>。</p></article><article class="cs-card reveal"><span class="cs-card__icon" style="--c:#bbf7d0"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/></svg></span><h3>结果</h3><p>Launcher 更符合中小学教育场景，<b>深受同学们的喜欢</b>；界面美观度、品牌一致性、设计规范遵循度通过了<b>专家评审与 A/B 测试</b>评估。</p></article></div>
+  </div>
+</section>
+<div class="cs-wrap" style="--accent:#22b455">
+  <div class="divider"><span>界面展示 · Screenshot gallery</span></div>
+  <div class="panels">
+    <figure class="panel seewo-preview reveal" id="launcher-preview" data-seewo-viewer tabindex="-1">
+      <figcaption class="seewo-preview__bar">
+        <span class="seewo-preview__caption" data-en="Launcher preview">白板预览</span>
+        <fieldset class="seewo-mode">
+          <legend class="sr-only" data-en="Whiteboard preview appearance">白板预览外观</legend>
+          <label><input type="radio" name="seewo-case-mode" value="dark" checked><span data-en="Dark">深色</span></label>
+          <label><input type="radio" name="seewo-case-mode" value="light"><span data-en="Light">浅色</span></label>
+        </fieldset>
+      </figcaption>
+      <div class="seewo-preview__stage">
+        <img data-seewo-screen="dark" class="zoomable" src="../assets/img/seewo/launcher-dark.webp" alt="希沃白板 Launcher 深色模式" width="2000" height="1151" loading="lazy" decoding="async">
+        <img data-seewo-screen="light" class="zoomable" src="../assets/img/seewo/launcher-light.webp" alt="希沃白板 Launcher 浅色模式" width="2000" height="1151" loading="lazy" decoding="async">
+      </div>
+    </figure>
+    <figure class="panel panel--half panel--dark reveal" style="--bg-p:#23232f;--mh:300px;"><img src="../assets/img/seewo/icons-dark.webp" alt="深色模式图标" width="1800" height="733" class="zoomable" loading="lazy" decoding="async"></figure>
+    <figure class="panel panel--half reveal" style="--bg-p:#eaf7ee;--mh:300px;"><img src="../assets/img/seewo/icons-light.webp" alt="浅色模式图标" width="1800" height="724" class="zoomable" loading="lazy" decoding="async"></figure>
+  </div>
+  <div class="divider"><span>设计过程 · Process</span></div>
+  <section class="step">
+  <div class="step__text reveal">
+    <p class="label">01 · Requirements analysis · 需求分析</p>
+    <h2 class="step__title serif">先把「85 寸、安卓、教室、师生」这些约束想清楚</h2>
+    <div class="prose"><p>大屏不是放大的手机。动手之前，我把硬件、系统、环境、用户与场景逐一拆开，转化成可执行的设计考量。</p></div>
+  </div>
+  <div class="facts  reveal"><div class="fact"><h4><em>01</em>白板尺寸：85 寸触控交互式大屏</h4><p>设计考虑系统耗电情况、室内大屏光源亮度与色彩还原度；触控式操作要符合人体工程学，降低交互难度。</p></div><div class="fact"><h4><em>02</em>运行系统：Android</h4><p>运用安卓原生 Roboto 字体，设计遵循安卓原生规范。</p></div><div class="fact"><h4><em>03</em>环境：中小学教室</h4><p>调研学科老师的男女比例、年龄分布，以及老师、学生的人物画像；考虑教室环境因素。</p></div><div class="fact"><h4><em>04</em>用户：中小学学科老师与学生</h4><p>课件展示要流畅、操作指引清晰易上手；书写流畅，工具使用科学易操作。</p></div><div class="fact"><h4><em>05</em>场景：播放课件与多媒体素材</h4><p>课件播放展示、在白板上书写板书、演示学科工具等操作，完成教学任务。</p></div><div class="fact"><h4><em>06</em>场景：加分激励等课堂互动</h4><p>与学生有交互：考虑学生身高与可触控区域，互动要有吸引力、新奇、有趣。</p></div></div>
+  <div class="panels"></div>
+</section>
+<section class="step">
+  <div class="step__text reveal">
+    <p class="label">02 · User personas · 用户画像</p>
+    <h2 class="step__title serif">从百度指数到三类典型用户</h2>
+    <div class="prose"><p>调研希沃白板、班级优化大师、作业帮、学而思等相关产品的用户画像（数据来源：百度指数），分析年龄与性别分布，提炼出<b>教师、小学生、初中生</b>三类典型用户，以及他们各自的目标与痛点。</p></div>
+  </div>
+  
+  <div class="panels"><figure class="panel reveal" style="--bg-p:#ffffff;--mh:340px;"><img src="../assets/img/seewo/chart-bars.webp" alt="相关产品人群画像" width="2000" height="630" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel reveal" style="--bg-p:#fffbf2;--mh:360px;"><img src="../assets/img/seewo/chart-age.webp" alt="年龄与性别占比" width="1800" height="844" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel panel--row reveal" style="--bg-p:#f3f0ff;--mh:420px;"><img src="../assets/img/seewo/persona-teacher.webp" alt="用户画像：教师" width="900" height="955" class="zoomable" loading="lazy" decoding="async"><img src="../assets/img/seewo/persona-pupil.webp" alt="用户画像：小学生" width="900" height="955" class="zoomable" loading="lazy" decoding="async"><img src="../assets/img/seewo/persona-junior.webp" alt="用户画像：初中生" width="900" height="955" class="zoomable" loading="lazy" decoding="async"></figure></div>
+</section>
+<section class="step">
+  <div class="step__text reveal">
+    <p class="label">03 · Style exploration · 风格探索</p>
+    <h2 class="step__title serif">从视觉语言的六个维度，找到「成长、童趣、活力」</h2>
+    <div class="prose"><p>围绕<b>图形元素、色彩元素、字体体系、界面布局、质感与风格、动画与动效</b>六个维度展开探索，再用情绪板衍生出关键词，作为后续视觉决策的依据。</p></div>
+  </div>
+  
+  <div class="panels"><figure class="panel reveal" style="--bg-p:#ffffff;--mh:160px;"><img src="../assets/img/seewo/style-dims.webp" alt="视觉语言的六个维度" width="2000" height="239" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel reveal" style="--bg-p:#f7fcf8;--mh:360px;"><img src="../assets/img/seewo/moodboard.webp" alt="情绪板衍生关键词" width="2000" height="640" class="zoomable" loading="lazy" decoding="async"></figure></div>
+</section>
+<section class="step">
+  <div class="step__text reveal">
+    <p class="label">04 · Color &amp; font · 颜色与字体</p>
+    <h2 class="step__title serif">成长的绿、童趣的黄、活力的橙</h2>
+    <div class="prose"><p>颜色从「成长、童趣、活力」三个关键词出发，延展出一组明快的辅助色。字体采用安卓原生 <b>Roboto</b>：Regular 120pt 用于时间、Regular 32pt 用于日期；Medium 18pt 用于列表流标题与图标文字。</p></div>
+  </div>
+  
+  <div class="panels"><figure class="panel reveal" style="--bg-p:#ffffff;--mh:420px;"><img src="../assets/img/seewo/color-photos.webp" alt="颜色关键词：成长、童趣、活力" width="2000" height="828" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel panel--half reveal" style="--bg-p:#ffffff;--mh:120px;"><img src="../assets/img/seewo/color-chips.webp" alt="辅助色" width="1600" height="257" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel panel--half reveal" style="--bg-p:#ffffff;--mh:160px;"><img src="../assets/img/seewo/font-aa.webp" alt="Roboto 字体" width="900" height="542" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel reveal" style="--bg-p:#ffffff;--mh:300px;"><img src="../assets/img/seewo/font-spec.webp" alt="字体规范" width="1600" height="712" class="zoomable" loading="lazy" decoding="async"></figure></div>
+</section>
+<section class="step">
+  <div class="step__text reveal">
+    <p class="label">05 · Texture &amp; icon · 质感与图标</p>
+    <h2 class="step__title serif">大圆角、毛玻璃、轻质感，做一套孩子愿意点的图标</h2>
+    <div class="prose"><p>把情绪板关键词翻译成视觉语言：<b>气泡、翅膀、羽毛 → 毛玻璃</b>；<b>包容、安全、亲和力 → 大圆角</b>；<b>彩虹、欢乐、童真、可爱 → 轻质感</b>。</p><p>图标采用标准化制图，大圆角设计更具亲近感，符合 K12 用户群体的品牌调性，并同时适配深色与浅色模式。</p></div>
+  </div>
+  
+  <div class="panels"><figure class="panel panel--half reveal" style="--bg-p:#ffffff;--mh:320px;"><img src="../assets/img/seewo/icon-keyline.webp" alt="图标标准化制图" width="900" height="900" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel panel--half reveal" style="--bg-p:#fff8e6;--mh:320px;"><img src="../assets/img/seewo/icon-grid.webp" alt="图标网格" width="900" height="900" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel panel--half panel--dark reveal" style="--bg-p:#23232f;--mh:280px;"><img src="../assets/img/seewo/icons-dark.webp" alt="深色模式图标" width="1800" height="733" class="zoomable" loading="lazy" decoding="async"></figure><figure class="panel panel--half reveal" style="--bg-p:#eaf7ee;--mh:280px;"><img src="../assets/img/seewo/icons-light.webp" alt="浅色模式图标" width="1800" height="724" class="zoomable" loading="lazy" decoding="async"></figure></div>
+</section>
+<section class="step">
+  <div class="step__text reveal">
+    <p class="label">06 · Interface layout · 界面布局</p>
+    <h2 class="step__title serif">按人体工程学重新排布：老师顺手，学生够得着</h2>
+    <div class="prose"><p><b>左右布局</b>：黑板为长方形白板，相比居中排布，左右卡片式布局可以展示更多信息，操作动线也更顺畅。</p><p><b>人体工程学</b>：卡片的操作行动点位于教师轻松操作的区间；学生会用到的几何画板、物理大师等图标，放在低于学生操作高线的位置；师生互动场景的按钮，也都在学生可触达的区域内。</p><p>根据格式塔原理，利用留白区分不同模块，让界面更轻量。</p></div><blockquote class="quote"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 22.5c0-5.6 2.7-10 8-13l1.3 2c-3 2-4.5 4-4.8 6.3H14v7.2H6zm12 0c0-5.6 2.7-10 8-13l1.3 2c-3 2-4.5 4-4.8 6.3H26v7.2h-8z"/></svg><span>同样一块屏幕，老师站着点、学生踮脚点——图标的位置本身就是交互设计。</span></blockquote>
+  </div>
+  
+  <div class="panels"><figure class="panel reveal" style="--bg-p:#ffffff;--mh:560px;"><img src="../assets/img/seewo/layout.webp" alt="界面布局与操作区域" width="2000" height="1132" class="zoomable" loading="lazy" decoding="async"></figure></div>
+</section>
+<section class="step">
+  <div class="step__text reveal">
+    <p class="label">07 · User interface · 用户界面</p>
+    <h2 class="step__title serif">深色与浅色，两种模式适配不同课堂</h2>
+    <div class="prose"><p><b>深色模式</b>：在教室环境下，85 寸大屏长期亮屏，深色模式能降低电力消耗，也为视力不佳和对强光敏感的用户提供更好的可视性。</p><p><b>浅色模式</b>：绘制轻质感扁平风格插画，让大屏信息清晰易读——面向教师，做到简约、轻量、有品质感；面向中小学生，用简约插画配合 Q 萌图标，活泼可爱，满足趣味性。</p></div>
+  </div>
+  
+  <div class="seewo-preview-return"><a class="btn btn--dark" href="#launcher-preview" data-en="Compare launcher modes">切换查看深浅模式</a></div>
+</section>
+
+  <a class="next reveal" href="maxhub.html">
+    <img src="../assets/img/maxhub/logo.webp" alt="" width="400" height="400" loading="lazy" decoding="async">
+    <span><small>下一个项目 · Next</small><strong>MAXHUB · 把银行厅堂的等待时间，变成一次轻松的营销互动</strong></span>
+    <span class="btn btn--dark">查看 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+  </a>
+</div>
+</main>
+<footer class="footer" id="contact">
+  <div class="eyes" aria-hidden="true"><span class="eye"><i></i></span><span class="eye"><i></i></span></div>
+  <div class="footer__row">
+    <p class="footer__hi">一起聊聊吧。<br>随时欢迎交流设计与合作机会。</p>
+    <div class="footer__icons">
+      <a class="icon-btn" href="mailto:15510087928@163.com" aria-label="发邮件" data-tip="15510087928@163.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+      <a class="icon-btn" href="../assets/lipan-resume.pdf" target="_blank" rel="noopener" aria-label="查看简历" data-tip="简历 PDF"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></a>
+      <button class="icon-btn" type="button" data-copy="lipan798" data-copy-label="已复制微信号" aria-label="复制微信号" data-tip="微信 lipan798"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></button>
+      <a class="icon-btn" href="https://dribbble.com/lipan16229290" target="_blank" rel="noopener" aria-label="Dribbble 主页" data-tip="Dribbble"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg></a>
+    </div>
+  </div>
+  <div class="footer__bottom"><span>© 2026 李盼 · UI / UX Designer</span></div>
+</footer>
+<div class="cursor" aria-hidden="true">
+  <svg class="ring" viewBox="0 0 100 100"><defs><path id="ring-path" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#ring-path">CLICK TO MAIL ME · 点击发邮件 · CLICK TO MAIL ME ·</textPath></text></svg>
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+</div>
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="图片预览"><img alt=""><button class="lightbox__close" type="button" aria-label="关闭预览">×</button></div>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/js/i18n-en.js?v=20261122a" defer></script>
+<script src="../assets/js/main.js?v=20261122a" defer></script>
+</body>
+</html>

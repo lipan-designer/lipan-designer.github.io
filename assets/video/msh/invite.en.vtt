@@ -1,0 +1,24 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.550 line:10% position:50% align:center size:88%
+<c.operation>Open referrals from the</c>
+<c.operation>Platinum member center.</c>
+
+00:00:02.550 --> 00:00:05.350 line:10% position:50% align:center size:88%
+<c.operation>Create an invite card.</c>
+
+00:00:05.350 --> 00:00:07.600 line:10% position:50% align:center size:88%
+<c.operation>Switch to the share poster.</c>
+
+00:00:07.600 --> 00:00:10.150 line:10% position:50% align:center size:88%
+<c.operation>Preview the friend’s invite.</c>
+
+00:00:10.150 --> 00:00:13.200 line:10% position:50% align:center size:88%
+<c.operation>Review the benefits and</c>
+<c.operation>select the ¥99 annual card.</c>
+
+00:00:13.200 --> 00:00:17.000 line:10% position:50% align:center size:88%
+<c.operation>The membership is active.</c>

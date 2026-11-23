@@ -1,0 +1,27 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.550 line:10% position:50% align:center size:88%
+<c.operation>好友开卡后，打开「我的粉丝」。</c>
+
+00:00:02.550 --> 00:00:05.300 line:10% position:50% align:center size:88%
+<c.operation>有效粉丝从 6 人增至 7 人。</c>
+<c.operation>小禾出现在名单顶部。</c>
+
+00:00:05.300 --> 00:00:07.600 line:10% position:50% align:center size:88%
+<c.operation>筛选有效粉丝，再返回推广中心。</c>
+
+00:00:07.600 --> 00:00:09.850 line:10% position:50% align:center size:88%
+<c.operation>打开佣金订单。</c>
+
+00:00:09.850 --> 00:00:12.100 line:10% position:50% align:center size:88%
+<c.operation>筛选未到账的推广奖励。</c>
+
+00:00:12.100 --> 00:00:14.500 line:10% position:50% align:center size:88%
+<c.operation>打开小禾的开卡订单。</c>
+
+00:00:14.500 --> 00:00:18.000 line:10% position:50% align:center size:88%
+<c.operation>核对推广来源、实付金额</c>
+<c.operation>和待核算进度。</c>

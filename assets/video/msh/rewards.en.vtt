@@ -1,0 +1,29 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.550 line:10% position:50% align:center size:88%
+<c.operation>Open My Followers after</c>
+<c.operation>a friend joins.</c>
+
+00:00:02.550 --> 00:00:05.300 line:10% position:50% align:center size:88%
+<c.operation>Six active followers become</c>
+<c.operation>seven. Xiaohe appears first.</c>
+
+00:00:05.300 --> 00:00:07.600 line:10% position:50% align:center size:88%
+<c.operation>Filter for active followers,</c>
+<c.operation>then go back.</c>
+
+00:00:07.600 --> 00:00:09.850 line:10% position:50% align:center size:88%
+<c.operation>Open commission orders.</c>
+
+00:00:09.850 --> 00:00:12.100 line:10% position:50% align:center size:88%
+<c.operation>Filter for pending rewards.</c>
+
+00:00:12.100 --> 00:00:14.500 line:10% position:50% align:center size:88%
+<c.operation>Open Xiaohe’s referral order.</c>
+
+00:00:14.500 --> 00:00:18.000 line:10% position:50% align:center size:88%
+<c.operation>Check the referral source,</c>
+<c.operation>payment and pending reward.</c>

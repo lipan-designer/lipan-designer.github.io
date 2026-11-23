@@ -1,0 +1,100 @@
+{
+  "fileName": "UIwork-界面设计",
+  "fileKey": "bVDJlubYNqms1DzNEKq0Mi",
+  "pageName": "04 问卷排查",
+  "pageNodeId": "0:1988",
+  "boards": [
+    {
+      "filename": "survey-list.webp",
+      "name": "我的问卷",
+      "nodeId": "0:1989",
+      "width": 1440,
+      "height": 960,
+      "bytes": 123144,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-1989",
+      "webpSha256": "6fdc54e3e9a2f995e5efa5427395b13ac29c02fa071fa089e4062ee525a15b8f"
+    },
+    {
+      "filename": "fill.webp",
+      "name": "填写问卷",
+      "nodeId": "0:2128",
+      "width": 1440,
+      "height": 960,
+      "bytes": 61660,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2128",
+      "webpSha256": "980077c071ccac324c2a5d4b322c642e9225e9b8d8190d729ea4723403b7e444"
+    },
+    {
+      "filename": "submitted.webp",
+      "name": "已提交问卷",
+      "nodeId": "0:2259",
+      "width": 1440,
+      "height": 960,
+      "bytes": 59246,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2259",
+      "webpSha256": "bdbc030c89e44ead2cd58e1597a87049c84c6ef7ab68ccf292384a18ea825a75"
+    },
+    {
+      "filename": "manage.webp",
+      "name": "问卷管理",
+      "nodeId": "0:2366",
+      "width": 1440,
+      "height": 960,
+      "bytes": 58826,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2366",
+      "webpSha256": "fe9e8bc61cc4b859a0044e4a2a607f3d9828d348a884452a508a8a054d70eb16"
+    },
+    {
+      "filename": "preview.webp",
+      "name": "问卷预览",
+      "nodeId": "0:2527",
+      "width": 1440,
+      "height": 960,
+      "bytes": 81246,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2527",
+      "webpSha256": "854b324f2b930f7826e3bce11c149e408bfd1f72d133058543920abf34fcd536"
+    },
+    {
+      "filename": "stats.webp",
+      "name": "排查统计",
+      "nodeId": "0:2658",
+      "width": 1440,
+      "height": 960,
+      "bytes": 53550,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2658",
+      "webpSha256": "ffe58b643bc54c0101d2091eb0f87ad920b575ea6ece3308dc4fa6c2026341ef"
+    },
+    {
+      "filename": "results.webp",
+      "name": "填报结果",
+      "nodeId": "0:2792",
+      "width": 1440,
+      "height": 960,
+      "bytes": 75436,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2792",
+      "webpSha256": "de28427b93154dbb8680e26a05ce76b0344ccd6345db5f33da859d05dcf477d9"
+    },
+    {
+      "filename": "response.webp",
+      "name": "答卷详情",
+      "nodeId": "0:2911",
+      "width": 1440,
+      "height": 960,
+      "bytes": 59212,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-2911",
+      "webpSha256": "4735a0b6ecccbfabf4de5695e7eedce421b49d45636f7d241f63a0fb6e9c9383"
+    },
+    {
+      "filename": "sort.webp",
+      "name": "我的问卷 · 最近发布排序菜单",
+      "nodeId": "0:3018",
+      "width": 1440,
+      "height": 960,
+      "bytes": 134442,
+      "source": "https://www.figma.com/design/bVDJlubYNqms1DzNEKq0Mi/?node-id=0-3018",
+      "webpSha256": "642c427313661cc860a81bc3dbc07666b04834640d30e1013c3f59070f98f46e"
+    }
+  ],
+  "webpEncoding": "lossless",
+  "totalWebpBytes": 706762
+}

@@ -1,0 +1,22 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.550 line:10% position:50% align:center size:88%
+<c.operation>从会员中心进入推广。</c>
+
+00:00:02.550 --> 00:00:05.350 line:10% position:50% align:center size:88%
+<c.operation>制作会员邀请卡。</c>
+
+00:00:05.350 --> 00:00:07.600 line:10% position:50% align:center size:88%
+<c.operation>切换为分享海报。</c>
+
+00:00:07.600 --> 00:00:10.150 line:10% position:50% align:center size:88%
+<c.operation>预览好友收到的邀请。</c>
+
+00:00:10.150 --> 00:00:13.200 line:10% position:50% align:center size:88%
+<c.operation>查看权益，开通 ¥99 年卡。</c>
+
+00:00:13.200 --> 00:00:17.000 line:10% position:50% align:center size:88%
+<c.operation>开卡成功，会员权益已生效。</c>

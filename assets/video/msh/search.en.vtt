@@ -1,0 +1,21 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.500 line:10% position:50% align:center size:88%
+<c.operation>Open product search.</c>
+
+00:00:02.500 --> 00:00:04.800 line:10% position:50% align:center size:88%
+<c.operation>Choose Fruit to see</c>
+<c.operation>three matching products.</c>
+
+00:00:04.800 --> 00:00:07.200 line:10% position:50% align:center size:88%
+<c.operation>Switch to Stores.</c>
+
+00:00:07.200 --> 00:00:09.700 line:10% position:50% align:center size:88%
+<c.operation>Open the Meishenghuo store.</c>
+
+00:00:09.700 --> 00:00:15.000 line:10% position:50% align:center size:88%
+<c.operation>Swipe up to browse</c>
+<c.operation>fruit and seafood prices.</c>

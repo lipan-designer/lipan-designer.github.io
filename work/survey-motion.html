@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="通过九张原始界面，浏览兴业银行人力资源系统从问卷填写到排查统计的流程。">
+  <title>问卷排查动效 · 兴业银行人力资源管理系统 — 李盼作品集</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <script>
+    (() => {
+      let theme, language;
+      try {
+        theme = localStorage.getItem('lp-theme');
+        language = localStorage.getItem('lp-lang');
+      } catch (_) {}
+      const root = document.documentElement;
+      root.dataset.theme = theme === 'light' || theme === 'dark' ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if (language === 'en') root.lang = 'en';
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261122a">
+  <link rel="stylesheet" href="../assets/css/survey-wall.css?v=survey-3rows-stats">
+  <link rel="stylesheet" href="../assets/css/survey-player.css?v=20261123storyboard">
+  <script src="../assets/js/survey-wall.js?v=survey-3rows-stats" defer></script>
+  <script src="../assets/js/survey-player.js" defer></script>
+</head>
+<body class="survey-screening">
+  <main class="screening-wrap">
+    <nav class="screening-nav" aria-label="项目导航" data-en-label="Project navigation">
+      <a href="hr.html"><span aria-hidden="true">←</span><span data-en="Back to the HR case study">返回人力资源项目</span></a>
+      <a href="../assets/video/hr/survey-motion.mp4?v=survey-3rows-stats" download><span data-en="Download MP4">下载 MP4</span><span aria-hidden="true">↓</span></a>
+    </nav>
+
+    <header class="screening-header">
+      <div>
+        <h1 data-en="Survey workflow">问卷排查</h1>
+        <p data-en="From employees filling in surveys to administrators reviewing the results.">从员工填写问卷，到管理员跟进排查结果。</p>
+      </div>
+      <button id="originals-open" class="originals-open" type="button" aria-haspopup="dialog" aria-controls="originals" hidden>
+        <span class="boards-glyph" aria-hidden="true"></span><span data-en="View originals">查看原稿</span>
+      </button>
+    </header>
+
+    <section class="motion-player" aria-label="问卷排查动效演示" data-en-label="Survey motion player">
+      <div id="motion-stage" class="motion-stage" role="group" aria-label="动效画面" data-en-label="Motion canvas" aria-describedby="motion-help" tabindex="0">
+        <survey-wall asset-base="../assets/img/hr/survey-motion/" aria-hidden="true">
+          <img src="../assets/img/hr/survey-motion/poster.webp?v=survey-3rows-stats" alt="" width="1440" height="1080">
+        </survey-wall>
+      </div>
+      <div class="motion-controls" id="motion-controls" hidden>
+        <button type="button" class="motion-toggle" id="motion-toggle" aria-controls="motion-stage">
+          <span class="play-glyph" aria-hidden="true"></span><span id="play-label">播放</span>
+        </button>
+        <label class="sr-only" for="motion-range" data-en="Playback position">播放进度</label>
+        <input id="motion-range" class="motion-range" type="range" min="0" max="11" step="0.01" value="0">
+        <span class="motion-time" aria-hidden="true"><span id="motion-time">0:00</span><span class="time-total"> / 0:11</span></span>
+      </div>
+    </section>
+    <p class="motion-help" id="motion-help" hidden><span data-en="Drag horizontally to scrub.">在画面上左右拖动可调整进度。</span><span class="keyboard-tip" data-en=" You can also use the arrow keys, or press Space to play or pause.">也可使用方向键，按空格播放或暂停。</span></p>
+    <noscript><p class="motion-help"><a href="../assets/video/hr/survey-motion.mp4?v=survey-3rows-stats">观看动效视频</a> · <a href="../assets/img/hr/survey-motion/survey-list.webp">查看「我的问卷」原稿</a></p></noscript>
+  </main>
+
+  <dialog class="originals" id="originals" aria-labelledby="original-title">
+    <header class="original-head">
+      <div class="original-heading" aria-live="polite" aria-atomic="true">
+        <span class="original-count" id="original-count"></span>
+        <h2 id="original-title" data-en="Original screens">问卷原稿</h2>
+      </div>
+      <button type="button" class="original-close viewer-button" aria-label="关闭原稿" data-en-label="Close originals" id="original-close" autofocus><span aria-hidden="true">×</span></button>
+    </header>
+    <div class="original-viewport" id="original-viewport" role="region" aria-label="原稿画面" data-en-label="Original screen">
+      <img id="original-image" width="1440" height="960" alt="" hidden>
+      <div id="original-status" class="original-status" role="status"></div>
+    </div>
+    <footer class="original-footer">
+      <a id="original-source" target="_blank" rel="noopener noreferrer" hidden><span data-en="Open in Figma">在 Figma 中打开</span><span aria-hidden="true">↗</span></a>
+      <div class="original-actions" id="original-actions" hidden>
+        <button type="button" id="original-zoom" class="viewer-button viewer-zoom" aria-pressed="false" aria-controls="original-viewport">原尺寸</button>
+        <button type="button" id="original-prev" class="viewer-button viewer-arrow" aria-label="上一张原稿" data-en-label="Previous original"><span aria-hidden="true">←</span></button>
+        <button type="button" id="original-next" class="viewer-button viewer-arrow" aria-label="下一张原稿" data-en-label="Next original"><span aria-hidden="true">→</span></button>
+      </div>
+    </footer>
+  </dialog>
+</body>
+</html>

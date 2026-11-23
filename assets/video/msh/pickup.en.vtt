@@ -1,0 +1,21 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.900 line:10% position:50% align:center size:88%
+<c.operation>Two items total ¥198.00.</c>
+
+00:00:02.900 --> 00:00:05.800 line:10% position:50% align:center size:88%
+<c.operation>Change the pickup location.</c>
+
+00:00:05.800 --> 00:00:08.900 line:10% position:50% align:center size:88%
+<c.operation>Select Hengrong Building.</c>
+
+00:00:08.900 --> 00:00:12.300 line:10% position:50% align:center size:88%
+<c.operation>Check the new address</c>
+<c.operation>and submit the order.</c>
+
+00:00:12.300 --> 00:00:16.000 line:10% position:50% align:center size:88%
+<c.operation>Order submitted.</c>
+<c.operation>The total is ¥198.00.</c>

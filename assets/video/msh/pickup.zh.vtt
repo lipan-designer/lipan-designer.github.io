@@ -1,0 +1,19 @@
+WEBVTT
+
+STYLE
+::cue(.operation) { color: #fff; background-color: rgba(31, 24, 21, 0.92); }
+
+00:00:00.000 --> 00:00:02.900 line:10% position:50% align:center size:88%
+<c.operation>两件商品合计 ¥198.00。</c>
+
+00:00:02.900 --> 00:00:05.800 line:10% position:50% align:center size:88%
+<c.operation>在结算页点「换站点」。</c>
+
+00:00:05.800 --> 00:00:08.900 line:10% position:50% align:center size:88%
+<c.operation>选择恒荣大厦自提站。</c>
+
+00:00:08.900 --> 00:00:12.300 line:10% position:50% align:center size:88%
+<c.operation>核对新的自提地址，提交订单。</c>
+
+00:00:12.300 --> 00:00:16.000 line:10% position:50% align:center size:88%
+<c.operation>订单已提交，金额 ¥198.00。</c>

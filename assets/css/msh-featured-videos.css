@@ -1,0 +1,72 @@
+/* Each pair shows a full app flow beside a close-up of its actual interface elements. */
+.pcard--msh .pcard__actions { display: flex; align-items: center; gap: 12px; }
+.pcard--msh .pcard__actions .btn { margin: 0; }
+.msh-motion {
+  display: grid; place-items: center; width: 42px; height: 42px; padding: 0;
+  color: var(--body); border: 1px solid var(--line); border-radius: 50%; background: var(--surface); cursor: pointer;
+}
+.msh-motion[hidden] { display: none; }
+.msh-motion span { width: 8px; height: 11px; border-inline: 2px solid currentColor; }
+.msh-motion[data-paused] span { width: 0; height: 0; margin-left: 2px; border: 0; border-block: 5px solid transparent; border-left: 8px solid currentColor; }
+.msh-motion:hover { color: var(--ink); }
+.msh-motion:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.pcard--msh .marquee { container-type: size; touch-action: pan-y; }
+.pcard--msh .tile { margin-inline-end: 10px; }
+.pcard-mosaic {
+  aspect-ratio: 1440 / 980; width: min(146.94cqh, 96cqw); background: #ffc1ae;
+  container: msh-mosaic / size;
+}
+.pcard-mosaic__wall { position: absolute; inset: 0; }
+.pcard-mosaic__screen {
+  position: absolute; display: block; left: var(--x); top: var(--y);
+  width: var(--screen-width, min(23.6cqw, 30cqh)); height: auto;
+  transform: translate(-50%, var(--lift, 0%));
+  border-radius: 8% / 3.7%; object-fit: cover; object-position: center top;
+}
+.pcard-mosaic [data-screen="category"]   { --x: 18.5%; --y: 49.5%; --lift: -100%; }
+.pcard-mosaic [data-screen="cart"]       { --x: 18.5%; --y: 54.5%; }
+.pcard-mosaic [data-screen="home"]       { --x: 50%; --y: 75.5%; --lift: -100%; --screen-width: min(26cqw, 33cqh); }
+.pcard-mosaic [data-screen="referrals"]  { --x: 50%; --y: 80.5%; }
+.pcard-mosaic [data-screen="checkout"]   { --x: 81.5%; --y: 39.5%; --lift: -100%; }
+.pcard-mosaic [data-screen="membership"] { --x: 81.5%; --y: 44.5%; }
+@container msh-mosaic (max-aspect-ratio: 1/1) {
+  .pcard-mosaic__wall {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1.15fr) repeat(2, minmax(0, 1fr));
+    padding: 3cqw 5cqw 7cqw; gap: 3.5cqw 5cqw;
+  }
+  .pcard-mosaic__screen {
+    position: static; width: 100%; height: 100%; min-width: 0; min-height: 0;
+    border-radius: clamp(9px, 3.5cqw, 22px); transform: none;
+  }
+  .pcard-mosaic__screen:nth-child(even) { transform: translateY(4cqw); }
+}
+.pcard-film--search { --film-paper: #ffd6bd; --parts-paper: #fff0e9; }
+.pcard-film--pickup { --film-paper: #f9ccae; --parts-paper: #fff0e5; }
+.pcard-film--invite { --film-paper: #f5c8ac; --parts-paper: #fbece2; }
+.pcard-film--rewards { --film-paper: #fbd4be; --parts-paper: #fceee7; }
+.pcard-mosaic, .pcard-film, .pcard-parts { border-radius: 20px; box-shadow: none; }
+.pcard-film { aspect-ratio: .74; width: min(74cqh, 91cqw); background: var(--film-paper); }
+.pcard-parts { aspect-ratio: 694 / 676; width: min(102.66cqh, 84cqw); background: var(--parts-paper); }
+.pcard-film__screen {
+  position: relative; display: block; width: min(82%, 42cqh); aspect-ratio: 375 / 812; overflow: hidden;
+  border-radius: 7.5% / 3.5%; background: #fff;
+  box-shadow: 0 0 0 1px rgba(95, 53, 31, .09), 0 6px 16px rgba(87, 47, 29, .09);
+}
+.pcard-film__screen img, .pcard-film__screen video { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.pcard-film__screen video { position: absolute; inset: 0; opacity: 0; }
+.pcard-film__screen[data-live] video { opacity: 1; }
+.pcard-parts__media { position: absolute; inset: 0; }
+.pcard-parts__media img { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 900px) {
+  .pcard--msh .pcard__head { padding-top: 80px; }
+}
+@media (max-width: 640px) {
+  .pcard--msh .pcard__head { padding-top: 68px; row-gap: 12px; }
+  .pcard--msh .pcard__actions { flex-direction: row-reverse; justify-self: start; }
+  .pcard-mosaic, .pcard-film, .pcard-parts { border-radius: 16px; }
+  .pcard-mosaic { aspect-ratio: 6 / 7; width: min(85.71cqh, 93cqw); }
+  .pcard-parts { width: min(91cqw, 103cqh); }
+}
+html:not(.js) .pcard--msh .marquee { overflow-x: auto; touch-action: pan-x pan-y; }
+html:not(.js) .pcard--msh .marquee__track { animation: none; }
