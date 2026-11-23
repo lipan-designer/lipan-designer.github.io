@@ -16,30 +16,32 @@
   aspect-ratio: 1440 / 980; width: min(146.94cqh, 96cqw); background: #ffc1ae;
   container: msh-mosaic / size;
 }
-.pcard-mosaic__wall { position: absolute; inset: 0; }
-.pcard-mosaic__screen {
-  position: absolute; display: block; left: var(--x); top: var(--y);
-  width: var(--screen-width, min(23.6cqw, 30cqh)); height: auto;
-  transform: translate(-50%, var(--lift, 0%));
-  border-radius: 8% / 3.7%; object-fit: cover; object-position: center top;
+.pcard-mosaic__wall {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  padding: 4%; gap: 3%;
 }
-.pcard-mosaic [data-screen="category"]   { --x: 18.5%; --y: 49.5%; --lift: -100%; }
-.pcard-mosaic [data-screen="cart"]       { --x: 18.5%; --y: 54.5%; }
-.pcard-mosaic [data-screen="home"]       { --x: 50%; --y: 75.5%; --lift: -100%; --screen-width: min(26cqw, 33cqh); }
-.pcard-mosaic [data-screen="referrals"]  { --x: 50%; --y: 80.5%; }
-.pcard-mosaic [data-screen="checkout"]   { --x: 81.5%; --y: 39.5%; --lift: -100%; }
-.pcard-mosaic [data-screen="membership"] { --x: 81.5%; --y: 44.5%; }
-@container msh-mosaic (max-aspect-ratio: 1/1) {
-  .pcard-mosaic__wall {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: minmax(0, 1.15fr) repeat(2, minmax(0, 1fr));
-    padding: 3cqw 5cqw 7cqw; gap: 3.5cqw 5cqw;
+.pcard-mosaic__screen {
+  display: block; width: auto; height: auto; max-width: 100%; max-height: 100%;
+  min-width: 0; min-height: 0; object-fit: contain; border-radius: 8% / 3.7%;
+}
+/* Keep the staggered composition for wide desktop tiles. */
+@media (min-width: 901px) {
+  @container msh-mosaic (aspect-ratio > 1/1) {
+    .pcard-mosaic__wall { display: block; padding: 0; }
+    .pcard-mosaic__screen {
+      position: absolute; left: var(--x); top: var(--y);
+      width: var(--screen-width, min(23.6cqw, 30cqh)); max-height: none;
+      transform: translate(-50%, var(--lift, 0%));
+    }
+    .pcard-mosaic [data-screen="category"]   { --x: 18.5%; --y: 49.5%; --lift: -100%; }
+    .pcard-mosaic [data-screen="cart"]       { --x: 18.5%; --y: 54.5%; }
+    .pcard-mosaic [data-screen="home"]       { --x: 50%; --y: 75.5%; --lift: -100%; --screen-width: min(26cqw, 33cqh); }
+    .pcard-mosaic [data-screen="referrals"]  { --x: 50%; --y: 80.5%; }
+    .pcard-mosaic [data-screen="checkout"]   { --x: 81.5%; --y: 39.5%; --lift: -100%; }
+    .pcard-mosaic [data-screen="membership"] { --x: 81.5%; --y: 44.5%; }
   }
-  .pcard-mosaic__screen {
-    position: static; width: 100%; height: 100%; min-width: 0; min-height: 0;
-    border-radius: clamp(9px, 3.5cqw, 22px); transform: none;
-  }
-  .pcard-mosaic__screen:nth-child(even) { transform: translateY(4cqw); }
 }
 .pcard-film--search { --film-paper: #ffd6bd; --parts-paper: #fff0e9; }
 .pcard-film--pickup { --film-paper: #f9ccae; --parts-paper: #fff0e5; }
