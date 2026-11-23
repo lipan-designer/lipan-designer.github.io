@@ -16,7 +16,7 @@
 <link rel="preload" href="../assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css?v=20261122a">
-<link rel="stylesheet" href="../assets/css/hr-showcase.css">
+<link rel="stylesheet" href="../assets/css/hr-showcase.css?v=hr-case-hd">
 <script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
 </head>
 <body>
@@ -43,26 +43,19 @@
     <section class="step">
       <div class="step__text"><h2 class="step__title">工作台</h2><div class="prose"><p>把待填问卷、待办线索和常用操作集中在一个工作台。</p></div></div>
       <figure class="panel panel--framed hr-panel hr-panel--workspace">
-        <img class="zoomable" src="../assets/img/hr/workspace.png" alt="工作台的指标、待办与常用操作" width="1440" height="960" loading="lazy" decoding="async">
-      </figure>
-    </section>
-    <section class="step">
-      <div class="step__text"><h2 class="step__title">移动端工作台与问卷</h2><div class="prose"><p>在手机上查看待办，进入「我的问卷」查看截止时间和填写状态。</p></div></div>
-      <figure class="panel panel--framed hr-panel hr-panel--mobile">
-        <img class="zoomable" src="../assets/img/hr/mobile-workspace.png" alt="移动端工作台" width="390" height="844" loading="lazy" decoding="async">
-        <img class="zoomable" src="../assets/img/hr/mobile-survey.png" alt="移动端我的问卷" width="390" height="844" loading="lazy" decoding="async">
+        <img class="zoomable" src="../assets/img/hr/workspace-home.webp?v=eb638e8881" alt="工作台的指标、待办与常用操作" width="1440" height="960" loading="lazy" decoding="async">
       </figure>
     </section>
     <section class="step">
       <div class="step__text"><h2 class="step__title">组织架构</h2><div class="prose"><p>沿着组织树查看银行与下属部门的关系，定位需要管理的单元。</p></div></div>
       <figure class="panel panel--framed hr-panel hr-panel--organization">
-        <img class="zoomable" src="../assets/img/hr/organization.png" alt="组织架构树与管理单元" width="1440" height="960" loading="lazy" decoding="async">
+        <img class="zoomable" src="../assets/img/hr/organization@2x.webp" alt="组织架构树与管理单元" width="1440" height="960" loading="lazy" decoding="async">
       </figure>
     </section>
-    <section class="step">
-      <div class="step__text"><h2 class="step__title">排查统计</h2><div class="prose"><p>通过填写进度和截止时间，判断哪些问卷还需要跟进。</p><p><a href="survey-motion.html" data-en="Watch the survey workflow">观看问卷排查动效 ↗</a></p></div></div>
+    <section class="step" id="my-questionnaires">
+      <div class="step__text"><h2 class="step__title" data-en="My questionnaires">我的问卷</h2><div class="prose"><p data-en="Check questionnaire deadlines and completion status, then open a pending questionnaire to fill it in.">查看问卷的截止时间和填写状态，选择待填问卷开始填写。</p><p><a href="survey-motion.html" data-en="Watch the survey workflow">观看问卷排查动效 ↗</a></p></div></div>
       <figure class="panel panel--framed hr-panel hr-panel--survey-report">
-        <img class="zoomable" src="../assets/img/hr/survey-report.png" alt="问卷排查统计与填写进度" width="1440" height="960" loading="lazy" decoding="async">
+        <img class="zoomable" src="../assets/img/hr/questionnaires@2x.webp" alt="我的问卷" width="1440" height="960" loading="lazy" decoding="async">
       </figure>
     </section>
     <a class="btn btn--dark" href="../index.html#hr">返回项目卡片</a>
@@ -85,9 +78,11 @@
   <svg class="ring" viewBox="0 0 100 100"><defs><path id="ring-path" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#ring-path">CLICK TO MAIL ME · 点击发邮件 · CLICK TO MAIL ME ·</textPath></text></svg>
   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
 </div>
-<div class="lightbox" role="dialog" aria-modal="true" aria-label="图片预览"><img alt=""><button class="lightbox__close" type="button" aria-label="关闭预览">×</button></div>
+<div class="lightbox hr-lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+  <div class="hr-image-viewport" tabindex="0"><img alt=""></div>
+  <button class="hr-detail-toggle" type="button" aria-pressed="false"><span data-en="Zoom in">放大细节</span><span data-en="Fit image">查看全图</span></button><button class="lightbox__close" type="button" aria-label="关闭预览">×</button></div>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="../assets/js/i18n-en.js?v=20261123hr" defer></script>
-<script src="../assets/js/main.js?v=20261122a" defer></script>
+<script src="../assets/js/i18n-en.js?v=20261124myq" defer></script>
+<script src="../assets/js/main.js?v=hr-case-hd" defer></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ window.LP_EN = {
   "工作台": "Workspace",
   "移动端工作台与问卷": "Mobile workspace and questionnaires",
   "组织架构": "Organization chart",
+  "我的问卷": "My questionnaires",
   "排查统计": "Survey progress",
   "把待填问卷、待办线索和常用操作集中在一个工作台。": "Pending questionnaires, reports and common actions share one workspace.",
   "在手机上查看待办，进入「我的问卷」查看截止时间和填写状态。": "Staff can check their tasks, questionnaire deadlines and completion status on mobile.",

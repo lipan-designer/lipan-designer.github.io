@@ -17,7 +17,7 @@
 <link rel="preload" href="assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css?v=20261123hero2">
 <link rel="stylesheet" href="assets/css/msh-featured-videos.css?v=20261124-grid">
-<link rel="stylesheet" href="assets/css/seewo-preview.css?v=20261123a">
+<link rel="stylesheet" href="assets/css/seewo-preview.css?v=20261123icons">
 <link rel="stylesheet" href="assets/css/hr-showcase.css?v=hr-full-screens-2">
 <link rel="stylesheet" href="assets/css/survey-wall.css?v=survey-3rows-stats-live">
 <script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
@@ -231,8 +231,10 @@
             <img data-seewo-screen="light" src="assets/img/seewo/launcher-light.webp" alt="希沃白板 Launcher 浅色模式" width="2000" height="1151" loading="lazy" decoding="async">
           </div>
         </figure>
-        <figure class="tile" style="--ar:1.5;--bg-t:#eaf7ee;"><img src="assets/img/seewo/icons-light.webp" alt="浅色模式图标组" width="1800" height="724" loading="lazy" decoding="async"></figure>
-        <figure class="tile" style="--ar:1.5;--bg-t:#23232f;"><img src="assets/img/seewo/icons-dark.webp" alt="深色模式图标组" width="1800" height="733" loading="lazy" decoding="async"></figure>
+        <figure class="tile seewo-icons" style="--ar:1.5;">
+          <img data-seewo-screen="dark" src="assets/img/seewo/icons-dark.webp" alt="深色模式图标组" width="1800" height="733" loading="lazy" decoding="async">
+          <img data-seewo-screen="light" src="assets/img/seewo/icons-light.webp" alt="浅色模式图标组" width="1800" height="724" loading="lazy" decoding="async">
+        </figure>
       </div>
     </div>
   </article>

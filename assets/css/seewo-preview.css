@@ -1,12 +1,14 @@
 /* The two original screens occupy the same bounds so points on the board stay aligned. */
 [data-seewo-viewer] {
   --seewo-paper: #1b1040;
+  --seewo-icons-paper: #23232f;
   --seewo-caption: #e4def5;
   --seewo-dark: visible;
   --seewo-light: hidden;
 }
 [data-seewo-viewer]:has(.seewo-mode input[value="light"]:checked) {
   --seewo-paper: #dcebff;
+  --seewo-icons-paper: #eaf7ee;
   --seewo-caption: #34465e;
   --seewo-dark: hidden;
   --seewo-light: visible;
@@ -14,8 +16,8 @@
 .seewo-preview { background-color: var(--seewo-paper); }
 .seewo-preview__stage { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; }
 .seewo-preview__stage img { grid-area: 1 / 1; display: block; width: 100%; height: auto; }
-.seewo-preview__stage [data-seewo-screen="dark"] { visibility: var(--seewo-dark); }
-.seewo-preview__stage [data-seewo-screen="light"] { visibility: var(--seewo-light); }
+[data-seewo-viewer] [data-seewo-screen="dark"] { visibility: var(--seewo-dark); }
+[data-seewo-viewer] [data-seewo-screen="light"] { visibility: var(--seewo-light); }
 
 .seewo-mode {
   display: inline-flex; flex: none; align-items: center; gap: 2px;
@@ -44,6 +46,8 @@
 .pcard--seewo .marquee { container-type: size; }
 .tile.seewo-preview { aspect-ratio: 1.6; width: min(160cqh, 94cqw); }
 .tile.seewo-preview .seewo-preview__stage { width: 90%; }
+.tile.seewo-icons { --bg-t: var(--seewo-icons-paper); }
+.seewo-icons > img { grid-area: 1 / 1; }
 .seewo-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
 .seewo-actions .btn { margin: 0; }
 html:not(.js) .pcard--seewo .marquee { overflow-x: auto; touch-action: pan-x pan-y; }

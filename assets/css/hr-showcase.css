@@ -111,3 +111,16 @@ html:not(.js) #hr .marquee__track { animation: none; }
   /* Let the original screenshot size the frame for both demo states. */
   #hr .hr-art .hr-screen { width: 93%; left: 0; }
 }
+
+/* Give dense desktop UI enough space for its labels at overview and reading sizes. */
+.hr-case > .cs-wrap { max-width: 1504px; padding-inline: clamp(12px, 3vw, 40px); }
+.hr-case .hr-panel { padding: clamp(8px, 1.7vw, 24px); }
+.hr-case .hr-panel > img { display: block; width: 100%; height: auto; max-height: none; }
+.hr-lightbox { padding: 72px 12px 12px; }
+.hr-image-viewport { width: 100%; height: 100%; min-height: 0; display: grid; place-items: safe center; overflow: auto; overscroll-behavior: contain; }
+.hr-image-viewport img { display: block; max-width: 100%; max-height: calc(100dvh - 84px); cursor: zoom-in; }
+.hr-lightbox.is-detail .hr-image-viewport { display: block; }
+.hr-lightbox.is-detail img { max-width: none; max-height: none; margin: 0 auto; cursor: zoom-out; }
+.hr-detail-toggle { position: absolute; top: 18px; right: 74px; height: 46px; padding: 0 18px; border-radius: 24px; background: white; color: #18181b; }
+.hr-detail-toggle[aria-pressed="false"] span:last-child,
+.hr-detail-toggle[aria-pressed="true"] span:first-child { display: none; }
