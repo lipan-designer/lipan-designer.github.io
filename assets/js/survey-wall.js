@@ -75,7 +75,7 @@
       this.preference = this.preference.bind(this);
     }
     connectedCallback() {
-      if (!this.sheet) this.build();
+      if (!this.sheet && !this.hasAttribute('data-card-preview')) this.build();
       this.motion = matchMedia('(prefers-reduced-motion: reduce)');
       this.motion.addEventListener('change', this.preference);
       document.addEventListener('visibilitychange', this.refresh);
@@ -178,7 +178,11 @@
       this.paint();
     }
     getProgress() { return this.progress; }
-    setPlaying(value) { this.play = Boolean(value); this.refresh(); }
+    setPlaying(value) {
+      this.play = Boolean(value);
+      if (this.play && this.isConnected && !this.sheet) { this.build(); this.paint(); }
+      this.refresh();
+    }
     preference() { if (!this.hasAttribute('data-card-preview')) this.setPlaying(!this.motion.matches); }
     stopClock() {
       cancelAnimationFrame(this.frame);

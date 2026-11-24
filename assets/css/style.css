@@ -386,25 +386,14 @@ html[data-theme="dark"] .nav__theme .i-sun { display: block; }
 .physics.is-static .pill { position: relative; transform: rotate(var(--r, 0deg)); }
 
 /* ==========================================================================
-   HOME · stacked project cards
+   HOME · project galleries
    ========================================================================== */
-.work { position: relative; padding: 0; margin: 0; }
-/* the section and its full-bleed cards start flush with the top of the viewport: cancel html's scroll-padding-top */
-.work, .pcard { scroll-margin-top: -24px; }
-/* full-bleed cards: every card sticks to the top and the next one slides over it */
+.home .nav { position: absolute; }
+.home .footer { position: relative; bottom: auto; }
+.work { display: grid; gap: clamp(16px, 2vw, 32px); }
 .pcard {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100svh;
-  min-height: 560px;
-  display: flex; flex-direction: column;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-bottom: 0;
-  border-radius: 36px 36px 0 0;
-  overflow: hidden;
-  box-shadow: 0 -14px 34px -24px var(--card-shadow);
+  position: relative; min-width: 0; overflow: hidden; isolation: isolate;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 32px;
 }
 .pcard__head {
   display: grid; grid-template-columns: 1fr auto; column-gap: 32px; align-items: start;
@@ -420,31 +409,19 @@ html[data-theme="dark"] .nav__theme .i-sun { display: block; }
 .pcard__title a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .pcard__tags { display: flex; flex-wrap: wrap; margin: 8px 0 0; padding: 0; list-style: none; color: var(--body); font-size: 15px; }
 .pcard__tags li + li::before { content: "\2022"; margin: 0 10px; color: var(--muted-2); }
-.pcard__media { position: relative; flex: 1; min-height: 0; }
-.pcard__media.marquee--featured-videos { touch-action: pan-x pan-y; }
-
-/* project image strip: JS drives an endless drift + drag with inertia (see initStrips in main.js) */
-.marquee {
-  overflow: hidden; display: flex; padding: 0 0 clamp(16px, 2vw, 24px);
-  cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+.work .pcard .pcard__media {
+  position: relative; overflow-x: auto; overflow-y: hidden;
+  height: clamp(300px, 54vh, 600px); height: clamp(300px, 54svh, 600px);
+  touch-action: pan-x pan-y pinch-zoom; overscroll-behavior-x: contain;
+  scrollbar-width: thin; cursor: grab; user-select: none; -webkit-user-select: none;
 }
-.strip-handle {
-  position: absolute; right: clamp(12px, 2vw, 28px); bottom: clamp(22px, 3vw, 40px); z-index: 1;
-  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 15px;
-  border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: var(--surface);
-  box-shadow: 0 3px 12px rgb(0 0 0 / 12%); font-size: 13px; font-weight: 600; cursor: grab;
-}
-.strip-handle .icon { width: 18px; height: 18px; }
-.strip-handle:hover, .strip-handle:focus-visible { border-color: var(--ink); }
-.marquee.is-grabbing, .marquee.is-grabbing .strip-handle { cursor: grabbing; }
-.marquee.is-grabbing .strip-handle { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.marquee.is-grabbing { cursor: grabbing; }
 .marquee img { -webkit-user-drag: none; pointer-events: none; }
-.js .marquee__track { animation: none; will-change: transform; }
-.marquee__track {
-  display: flex; height: 100%; width: max-content;
-  animation: marquee var(--dur, 70s) linear infinite;
-}
-@keyframes marquee { to { transform: translate3d(-50%, 0, 0); } }
+.marquee__track { display: flex; height: 100%; width: max-content; }
+.gallery-controls { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 8px clamp(16px, 3vw, 44px); }
+.gallery-controls[hidden] { display: none; }
+.gallery-controls button { min-width: 44px; min-height: 44px; border-radius: 24px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); cursor: pointer; }
+.gallery-controls button:disabled { opacity: .35; cursor: default; }
 .tile {
   position: relative; flex: none; height: 100%;
   aspect-ratio: var(--ar, 1.3);
@@ -866,7 +843,10 @@ html[data-theme="dark"] .hero__avatar { box-shadow: 0 0 0 2px var(--line), 0 4px
 }
 @media (max-width: 900px) {
   .fan { --k: .66; }
-  .pcard { border-radius: 28px 28px 0 0; }
+  .pcard { border-radius: 24px; }
+  .work .pcard .pcard__media { height: clamp(220px, 70vw, 380px); }
+  .work .tile { max-width: 92vw; min-width: 0; }
+  .work .pcard .pcard__head { padding-top: 26px; }
   .pcard__head { grid-template-columns: 1fr; row-gap: 18px; }
   .pcard__head .btn { justify-self: start; margin-top: 0; }
   .tile { border-radius: 18px; margin-right: 12px; }

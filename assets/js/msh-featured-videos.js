@@ -1,4 +1,4 @@
-/* One silent inline player follows the most visible phone, including the posters in the loop's second half. */
+/* One silent inline player follows the most visible phone, as the gallery scrolls. */
 (() => {
   'use strict';
   const card = document.querySelector('.pcard--msh');
@@ -6,7 +6,7 @@
   const reel = card.querySelector('.marquee');
   const toggle = card.querySelector('[data-msh-motion]');
   const slots = Array.from(card.querySelectorAll('[data-film-slot]'));
-  const nextCard = card.nextElementSibling;
+  const touch = matchMedia('(pointer: coarse)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const network = navigator.connection;
   const player = document.createElement('video');
@@ -18,7 +18,7 @@
   player.preload = 'none';
   player.setAttribute('aria-hidden', 'true');
   let active = null;
-  let paused = reduced.matches || !!network?.saveData;
+  let paused = touch.matches || reduced.matches || !!network?.saveData;
   let blocked = false;
   let raf = 0;
   let releaseTimer = 0;
@@ -63,10 +63,10 @@
   }
   function choose() {
     raf = 0;
-    if (paused || blocked || document.hidden || !nearby.size || document.documentElement.classList.contains('is-loading')) { stop(); return; }
+    if (paused || blocked || document.hidden || !nearby.size) { stop(); return; }
     const bounds = reel.getBoundingClientRect();
     const top = Math.max(0, bounds.top);
-    const bottom = Math.min(innerHeight, bounds.bottom, nextCard?.getBoundingClientRect().top ?? Infinity);
+    const bottom = Math.min(innerHeight, bounds.bottom);
     const center = innerWidth / 2;
     let best = null, bestScore = -Infinity;
     for (const slot of nearby) {
@@ -86,7 +86,6 @@
     const label = en ? (staticMode ? 'Play motion previews' : 'Pause motion previews') : (staticMode ? '播放动态预览' : '暂停动态预览');
     toggle.toggleAttribute('data-paused', staticMode);
     toggle.setAttribute('aria-label', label); toggle.title = label;
-    reel.dispatchEvent(new CustomEvent('msh:motion', {detail: {paused: staticMode}}));
   }
   if (!('IntersectionObserver' in window) || !player.canPlayType('video/mp4')) return;
   const observer = new IntersectionObserver(entries => {
@@ -100,7 +99,7 @@
   toggle.addEventListener('click', () => {
     paused = !(paused || blocked); blocked = false; updateToggle(); choose();
   });
-  function preferencesChanged() { paused = reduced.matches || !!network?.saveData; blocked = false; updateToggle(); schedule(); }
+  function preferencesChanged() { paused = touch.matches || reduced.matches || !!network?.saveData; blocked = false; updateToggle(); schedule(); }
   reduced.addEventListener?.('change', preferencesChanged);
   network?.addEventListener?.('change', preferencesChanged);
   document.addEventListener('lp:lang', updateToggle);
@@ -113,12 +112,6 @@
   function settled() { clearTimeout(settleTimer); settleTimer = setTimeout(schedule, 140); }
   reel.addEventListener('pointerup', settled);
   reel.addEventListener('wheel', settled, {passive: true});
-  const intro = document.querySelector('.loader');
-  if (intro && document.documentElement.classList.contains('is-loading')) {
-    const introObserver = new MutationObserver(() => {
-      if (!document.documentElement.classList.contains('is-loading')) { introObserver.disconnect(); schedule(); }
-    });
-    introObserver.observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
-  }
+  reel.addEventListener('scroll', settled, {passive: true});
   updateToggle();
 })();

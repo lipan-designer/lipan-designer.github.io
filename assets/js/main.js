@@ -7,54 +7,6 @@
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
 
-  /* ---------------- first-visit loader: "aligning every pixel" ----------------
-     Shown once per browser session (flag set by the inline script in <head>). Intro animations
-     (falling pills, headline reveal) wait for it via whenReady() so they play as it lifts. */
-  var loaderEl = d.querySelector('.loader');
-  var loading = !!loaderEl && root.classList.contains('is-loading');
-  var readyQueue = [];
-  function whenReady(fn) { if (loading) readyQueue.push(fn); else fn(); }
-  if (loading) {
-    (function runLoader() {
-      var num = loaderEl.querySelector('[data-loader-num]');
-      var t0 = performance.now(), DUR = 1100, loaded = d.readyState === 'complete';
-      window.addEventListener('load', function () { loaded = true; });
-      function finish() {
-        if (!loading) return;
-        loading = false;
-        if (num) num.textContent = '100';
-        try { sessionStorage.setItem('lp-seen', '1'); } catch (e) {}
-        loaderEl.classList.add('is-done');
-        setTimeout(function () { readyQueue.splice(0).forEach(function (fn) { fn(); }); }, 180);
-        setTimeout(function () { root.classList.remove('is-loading'); }, 900);
-      }
-      function step(now) {
-        var k = Math.min(1, (now - t0) / DUR);
-        var e = 1 - Math.pow(1 - k, 3);
-        // hold at 96% until the page has loaded (max 2.4s in total)
-        var v = Math.round((loaded || now - t0 > 2400 ? e : Math.min(e, .96)) * 100);
-        if (num) num.textContent = v < 10 ? '0' + v : String(v);
-        if (k >= 1 && (loaded || now - t0 > 2400)) { finish(); return; }
-        requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-      setTimeout(finish, 3200);   // failsafe
-    })();
-  }
-
-  /* the image strips loop by showing their tiles twice: copy them before any text is translated */
-  d.querySelectorAll('[data-marquee]').forEach(function (track) {
-    Array.prototype.slice.call(track.children).forEach(function (k) {
-      var c = k.cloneNode(true);
-      c.setAttribute('aria-hidden', 'true');
-      c.querySelectorAll('img').forEach(function (img) { img.alt = ''; });
-      c.querySelectorAll('a[href],button,[tabindex]').forEach(function (control) { control.tabIndex = -1; });
-      track.appendChild(c);
-    });
-    var handle = d.getElementById('strip-handle');
-    if (handle) track.after(handle.content.cloneNode(true));
-  });
-
   /* ---------------- language: Chinese / English ----------------
      Chinese is the source text in the HTML. English comes from window.LP_EN (assets/js/i18n-en.js),
      keyed by the Chinese text itself: if a Chinese sentence is edited later it simply stays Chinese
@@ -184,7 +136,7 @@
   })();
 
   /* ---------------- nav hide / show + progress bar ---------------- */
-  var nav = d.querySelector('.nav');
+  var nav = d.querySelector('body:not(.home) .nav');
   var bar = d.querySelector('.progress');
   var lastY = window.scrollY, ticking = false;
   function onScroll() {
@@ -404,269 +356,75 @@
     d.addEventListener('lp:lang', function () { setTimeout(function () { sync(false); render(); start(); }, 30); });
   }
   if (d.querySelector('[data-physics]')) {
-    var go = function () { whenReady(initPhysics); };
+    var go = function () { initPhysics(); };
     if (d.fonts && d.fonts.ready) d.fonts.ready.then(go); else window.addEventListener('load', go);
   }
 
-  /* Visible project strips drift horizontally. Dragging and trackpad gestures still work when motion is paused. */
-  (function initStrips() {
-    const tracks = Array.from(d.querySelectorAll('[data-marquee]'));
-    if (!tracks.length) return;
+  // Touch and trackpad use native scrolling. Mouse dragging only handles the horizontal strip.
+  d.querySelectorAll('[data-marquee]').forEach(track => {
+    const box = track.parentElement;
+    const card = box.closest('.pcard');
+    const controls = card.querySelector('.gallery-controls');
+    const buttons = controls.querySelectorAll('[data-step]');
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
-    const friction = 0.925;
-    const drift = -0.028;
-    const strips = [];
-    let raf = 0;
-    let last = 0;
-    let geometryDirty = true;
-    function wake() { if (!raf && !d.hidden) raf = requestAnimationFrame(render); }
-    function invalidate() { geometryDirty = true; wake(); }
-    function wrap(x, width) { return width ? (x % width + (x % width > 0 ? -width : 0)) : 0; }
-    function speed(strip) { return motion.matches || strip.hold || strip.hover || strip.focused ? 0 : strip.drift; }
-    function render(time) {
-      raf = 0;
-      const delta = last ? Math.min(time - last, 48) : 16.7;
-      if (geometryDirty) {
-        for (const strip of strips) {
-          const box = strip.box.getBoundingClientRect();
-          // A sticky card is covered by the next project before it leaves the viewport.
-          const bottom = Math.min(innerHeight, box.bottom, strip.next ? strip.next.getBoundingClientRect().top : Infinity);
-          const exposedHeight = bottom - Math.max(0, box.top);
-          // The HR reel queues at its opening while earlier projects are being read.
-          if (!strip.entered && exposedHeight >= Math.min(box.height, innerHeight) * .45) {
-            strip.entered = true;
-          }
-          const visible = strip.entered && exposedHeight > 0;
-          if (visible !== strip.visible) {
-            strip.visible = visible;
-            strip.syncFilm?.();
-          }
-        }
-        geometryDirty = false;
-      }
-      let running = false;
-      for (const strip of strips) {
-        if (!strip.visible && !strip.drag) continue;
-        const target = speed(strip);
-        if (!strip.drag) {
-          if (motion.matches) strip.velocity = 0;
-          else strip.velocity += (target - strip.velocity) * (1 - friction ** (delta / 16.67));
-          const step = motion.matches || Math.abs(strip.remaining) < 1 ? strip.remaining : strip.remaining * (1 - Math.exp(-delta / 80));
-          strip.remaining -= step;
-          strip.offset += strip.velocity * delta + step;
-        }
-        strip.offset = wrap(strip.offset, strip.period);
-        // Move detailed UI artwork in whole device pixels so fine strokes stay stable.
-        const ratio = window.devicePixelRatio || 1;
-        const position = strip.snapToPixels ? Math.round(strip.offset * ratio) / ratio : strip.offset.toFixed(2);
-        if (position !== strip.painted) {
-          strip.track.style.transform = `translate3d(${position}px,0,0)`;
-          strip.painted = position;
-        }
-        if (!strip.drag && (target || strip.remaining || Math.abs(strip.velocity) > .005)) running = true;
-      }
-      last = running ? time : 0;
-      if (running) wake();
+    box.tabIndex = 0;
+    box.setAttribute('role', 'region');
+    const heading = card.querySelector('h2');
+    heading.id = card.id + '-title';
+    box.setAttribute('aria-labelledby', heading.id);
+    controls.hidden = false;
+    function updateButtons() {
+      buttons[0].disabled = box.scrollLeft < 2;
+      buttons[1].disabled = box.scrollLeft + box.clientWidth >= box.scrollWidth - 2;
     }
-    for (const track of tracks) {
-      const box = track.parentElement;
-      const card = box.closest('.pcard');
-      const next = card && card.nextElementSibling;
-      const featured = box.classList.contains('marquee--featured-videos');
-      const playback = box.querySelector('.hr-playback');
-      const stripDrift = featured || playback ? -.018 : drift;
-      const strip = { track, box, featured, snapToPixels: featured || !!playback, drift: stripDrift, next: next?.matches('.pcard') ? next : null, period: track.scrollWidth / 2,
-        offset: 0, remaining: 0, focused: false, velocity: stripDrift, drag: null, entered: !playback, visible: false, hold: false, hover: false, painted: '' };
-      strips.push(strip);
-      track.querySelectorAll('img').forEach(img => { img.draggable = false; });
-      if (featured) box.addEventListener('msh:motion', event => { strip.hold = event.detail.paused; if (strip.hold) strip.velocity = 0; wake(); });
-      const modePicker = card?.querySelector('.seewo-mode');
-      if (modePicker) {
-        // Bring the launcher back into view and hold it still while its modes are compared.
-        function showLauncher() {
-          strip.remaining = 0;
-          strip.offset = 0;
-          strip.velocity = 0;
-          strip.hold = modePicker.matches(':focus-within');
-          wake();
-        }
-        modePicker.addEventListener('focusin', showLauncher);
-        modePicker.addEventListener('click', showLauncher);
-        modePicker.addEventListener('change', showLauncher);
-        modePicker.addEventListener('focusout', event => {
-          if (!modePicker.contains(event.relatedTarget)) { strip.hold = false; wake(); }
-        });
-      }
-      if (playback) {
-        const visibility = new Map();
-        const previews = Array.from(track.querySelectorAll('survey-wall[data-card-preview]'));
-        let gesture = false;
-        function syncFilm() {
-          for (const wall of previews) {
-            const ratio = visibility.get(wall.closest('.tile')) || 0;
-            wall.setPlaying?.(strip.visible && ratio >= .1 && !motion.matches && !gesture && !d.hidden && !strip.hold);
-          }
-        }
-        customElements.whenDefined('survey-wall').then(syncFilm);
-        strip.syncFilm = syncFilm;
-        let activeTile = null;
-        const observer = new IntersectionObserver(entries => {
-          for (const entry of entries) {
-            visibility.set(entry.target, entry.intersectionRatio);
-            if (entry.intersectionRatio === 0) {
-              entry.target.querySelector('survey-wall')?.setProgress?.(0);
-            }
-          }
-          let best = null, highest = .15;
-          for (const [tile, ratio] of visibility) {
-            if (ratio > highest) { best = tile; highest = ratio; }
-          }
-          if (best !== activeTile) {
-            activeTile?.classList.remove('is-demo');
-            best?.classList.add('is-demo');
-            activeTile = best;
-          }
-          syncFilm();
-        }, { threshold: Array.from({length: 21}, (_, i) => i / 20) });
-        for (const tile of track.children) observer.observe(tile);
-        box.addEventListener('pointerdown', event => {
-          if (!event.isPrimary || event.button !== 0 || event.target.closest('button, a, input, select, textarea')) return;
-          gesture = true;
-          syncFilm();
-        });
-        const endGesture = () => { if (gesture) { gesture = false; syncFilm(); } };
-        for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) box.addEventListener(event, endGesture);
-        const syncPlayback = () => {
-          syncFilm();
-          playback.hidden = motion.matches;
-          box.classList.toggle('is-demo-paused', strip.hold || d.hidden);
-        };
-        playback.addEventListener('click', () => {
-          strip.hold = !strip.hold;
-          strip.remaining = strip.velocity = 0;
-          playback.setAttribute('aria-pressed', String(strip.hold));
-          syncPlayback();
-          wake();
-        });
-        motion.addEventListener('change', syncPlayback);
-        d.addEventListener('visibilitychange', syncPlayback);
-        syncPlayback();
-      }
-      const handle = box.querySelector('.strip-handle');
-      let suppressClick = false;
-      function advance(direction) {
-        strip.velocity = 0;
-        strip.remaining = direction * box.clientWidth * .8;
-        if (playback && strip.period > 0) {
-          // Align with the next artwork's center, including at the loop seam.
-          const center = box.clientWidth / 2 - strip.offset;
-          const tiles = Array.from(track.children).slice(0, track.children.length / 2);
-          const distances = tiles.map(tile => {
-            const distance = (tile.offsetLeft + tile.offsetWidth / 2 - center) * -direction;
-            const wrapped = ((distance % strip.period) + strip.period) % strip.period;
-            return wrapped < 12 ? wrapped + strip.period : wrapped;
-          });
-          strip.remaining = direction * Math.min(...distances);
-        }
-        wake();
-      }
-      handle?.addEventListener('click', event => {
-        if (event.detail === 0 || !suppressClick) advance(-1);
-      });
-      handle?.addEventListener('keydown', event => {
-        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-        event.preventDefault();
-        advance(event.key === 'ArrowLeft' ? 1 : -1);
-      });
-      handle?.addEventListener('focus', () => { strip.focused = true; strip.velocity = 0; wake(); });
-      handle?.addEventListener('blur', () => { strip.focused = false; wake(); });
-      if (playback) {
-        const entryLink = track.querySelector('.survey-wall-link');
-        entryLink?.addEventListener('focus', () => {
-          if (!entryLink.matches(':focus-visible')) return;
-          strip.focused = true;
-          box.scrollLeft = 0;
-          strip.offset = -entryLink.closest('.tile').offsetLeft;
-          strip.remaining = strip.velocity = 0;
-          wake();
-        });
-        entryLink?.addEventListener('blur', () => { strip.focused = false; wake(); });
-      }
-      box.addEventListener('pointerenter', event => {
-        if (!playback && event.pointerType === 'mouse') { strip.hover = true; strip.velocity = 0; wake(); }
-      });
-      box.addEventListener('pointerleave', () => { strip.hover = false; wake(); });
-      box.addEventListener('pointerdown', event => {
-        if (!event.isPrimary || event.button !== 0 || strip.drag) return;
-        const control = event.target.closest('button, a, input, select, textarea');
-        if (control && control !== handle) return;
-        suppressClick = false;
-        strip.drag = { id: event.pointerId, x: event.clientX, y: event.clientY, start: strip.offset,
-          live: false, samples: [{ t: event.timeStamp, x: event.clientX }] };
-        strip.remaining = strip.velocity = 0;
-        (control || box).setPointerCapture(event.pointerId);
-        wake();
-      });
-      box.addEventListener('pointermove', event => {
-        const drag = strip.drag;
-        if (!drag || drag.id !== event.pointerId) return;
-        const dx = event.clientX - drag.x;
-        if (!drag.live) {
-          const dy = event.clientY - drag.y;
-          if (Math.max(Math.abs(dx), Math.abs(dy)) < 5) return;
-          if (Math.abs(dy) > Math.abs(dx)) {
-            if (event.pointerType !== 'mouse') { strip.drag = null; suppressClick = true; wake(); }
-            return;
-          }
-          drag.live = true;
-          suppressClick = true;
-          box.classList.add('is-grabbing');
-        }
-        strip.offset = drag.start + dx;
-        drag.samples.push({ t: event.timeStamp, x: event.clientX });
-        while (drag.samples.length > 1 && event.timeStamp - drag.samples[0].t > 90) drag.samples.shift();
-        wake();
-      });
-      function release(event) {
-        const drag = strip.drag;
-        if (!drag || drag.id !== event.pointerId) return;
-        strip.drag = null;
-        box.classList.remove('is-grabbing');
-        const first = drag.samples[0];
-        const lastMove = drag.samples[drag.samples.length - 1];
-        const elapsed = event.timeStamp - first.t;
-        if (event.type === 'pointerup' && drag.live) {
-          strip.offset = drag.start + event.clientX - drag.x;
-          if (!motion.matches && elapsed > 0 && event.timeStamp - lastMove.t < 70) {
-            strip.velocity = clamp((event.clientX - first.x) / elapsed, -1.8, 1.8);
-          }
-        }
-        wake();
-      }
-      for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) box.addEventListener(event, release);
-      box.addEventListener('wheel', event => {
-        if (event.ctrlKey || strip.drag) return;
-        const sideways = event.shiftKey && !event.deltaX;
-        if (!sideways && Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-        event.preventDefault();
-        const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? box.clientWidth : 1;
-        strip.offset -= (sideways ? event.deltaY : event.deltaX) * unit;
-        strip.remaining = strip.velocity = 0;
-        wake();
-      }, {passive: false});
-    }
-    function measure() { strips.forEach(s => { s.period = s.track.scrollWidth / 2; }); invalidate(); }
-    window.addEventListener('scroll', invalidate, {passive: true});
-    window.addEventListener('resize', measure);
-    if (d.fonts?.ready) d.fonts.ready.then(measure);
-    if (motion.addEventListener) motion.addEventListener('change', invalidate);
-    d.addEventListener('visibilitychange', () => {
-      if (d.hidden) { cancelAnimationFrame(raf); raf = 0; last = 0; }
-      else invalidate();
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const forward = button.dataset.step === '1';
+      const tiles = Array.from(track.children);
+      const next = (forward ? tiles : tiles.reverse()).find(tile => forward
+        ? tile.offsetLeft > box.scrollLeft + 2 : tile.offsetLeft < box.scrollLeft - 2);
+      box.scrollTo({left: next ? next.offsetLeft : forward ? box.scrollWidth : 0, behavior: motion.matches ? 'auto' : 'smooth'});
+    }));
+    box.addEventListener('scroll', updateButtons, {passive: true});
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(updateButtons);
+      observer.observe(box); observer.observe(track);
+    } else window.addEventListener('resize', updateButtons);
+    updateButtons();
+    card.querySelector('.seewo-mode')?.addEventListener('change', () => { box.scrollLeft = 0; });
+    let drag = null;
+    box.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a,button')) return;
+      drag = {x: event.clientX, left: box.scrollLeft};
+      box.setPointerCapture(event.pointerId);
+      box.classList.add('is-grabbing');
     });
-    window.addEventListener('pageshow', invalidate);
-    wake();
-  })();
+    box.addEventListener('pointermove', event => {
+      if (drag) box.scrollLeft = drag.left + drag.x - event.clientX;
+    });
+    box.addEventListener('lostpointercapture', () => { drag = null; box.classList.remove('is-grabbing'); });
+
+    const wall = track.querySelector('survey-wall[data-card-preview]');
+    if (!wall || !('IntersectionObserver' in window)) return;
+    const allowAutoplay = !matchMedia('(pointer: coarse)').matches && !navigator.connection?.saveData;
+    const visible = new Set();
+    function sync() {
+      const play = allowAutoplay && !motion.matches && !d.hidden;
+      for (const tile of track.children) tile.classList.toggle('is-demo', play && visible.has(tile));
+      wall.setPlaying?.(play && visible.has(wall.closest('.tile')));
+    }
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.intersectionRatio >= .2) visible.add(entry.target);
+        else visible.delete(entry.target);
+      }
+      sync();
+    }, {threshold: [0, .2]});
+    for (const tile of track.children) observer.observe(tile);
+    customElements.whenDefined('survey-wall').then(sync);
+    motion.addEventListener('change', sync);
+    d.addEventListener('visibilitychange', sync);
+    sync();
+  });
 
   /* ---------------- playground lab wall ---------------- */
   // before / after: a transparent range input covers the image, so mouse, touch and keyboard all work
@@ -892,6 +650,6 @@
       if (motion.matches) title.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
     });
     d.addEventListener('lp:lang', reveal);
-    whenReady(reveal);
+    reveal();
   })();
 })();
