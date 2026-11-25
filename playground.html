@@ -17,6 +17,7 @@
 <link rel="preload" href="assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css?v=20261122a">
 <script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
+<link rel="stylesheet" href="assets/css/experiment-cards.css">
 </head>
 <body>
 <div class="progress" aria-hidden="true"></div>
@@ -38,7 +39,37 @@
   <p class="intro-hero__sub">插画 · C4D · 品牌 VI · IP 形象 —— 一些不那么「B 端」的作品</p>
 </section>
 <div class="pg">
-  <div class="pg__head reveal" id="lab"><h2 class="serif">实验墙</h2><p>Lab · 拖一拖、点一点、晃一晃：用作品里的真实素材做的小交互。</p></div>
+  <div class="pg__head reveal" id="lab"><h2 class="serif">实验墙</h2><p data-en="Open a web experiment, or try the small interactions below.">打开一个网页实验，或在下方试试作品里的小交互。</p></div>
+  <div class="experiment-cards">
+    <a class="experiment-card" href="experiments/inverted-ink/index.html">
+      <img src="experiments/inverted-ink/cover.webp" width="800" height="450" alt="" loading="lazy" decoding="async">
+      <div class="experiment-card__body">
+        <h3 class="serif"><span data-en="Inverted Ink">颠倒 · 水墨山水</span><span aria-hidden="true">→</span></h3>
+        <p data-en="Scrub through an ink landscape as it turns upside down.">沿着时间轴，看水墨山水如何颠倒变换。</p>
+      </div>
+    </a>
+    <a class="experiment-card" href="experiments/sketch-to-building/index.html">
+      <img src="experiments/sketch-to-building/cover.webp" width="800" height="450" alt="" loading="lazy" decoding="async">
+      <div class="experiment-card__body">
+        <h3 class="serif"><span data-en="A House, a Year">筑年</span><span aria-hidden="true">→</span></h3>
+        <p data-en="Follow a house from its first sketch through four seasons.">拖动时间轴，看一张草图如何在四季里长成一栋房子。</p>
+      </div>
+    </a>
+    <a class="experiment-card" href="experiments/cellarium/index.html">
+      <img src="experiments/cellarium/cover.webp" width="800" height="450" alt="" loading="lazy" decoding="async">
+      <div class="experiment-card__body">
+        <h3 class="serif"><span data-en="Cellarium">细胞漫游</span><span aria-hidden="true">→</span></h3>
+        <p data-en="Rotate and slice a cell to explore the organelles inside.">旋转细胞，打开剖面，探索细胞器的位置与结构。</p>
+      </div>
+    </a>
+    <a class="experiment-card" href="experiments/stream-walk/index.html">
+      <img src="experiments/stream-walk/cover.webp" width="800" height="450" alt="" loading="lazy" decoding="async">
+      <div class="experiment-card__body">
+        <h3 class="serif"><span data-en="A Quiet Place">溪间</span><span aria-hidden="true">→</span></h3>
+        <p data-en="Walk beside a forest stream, change the light, and listen to the water.">沿林间溪流散步，切换时刻，听水声从身边流过。</p>
+      </div>
+    </a>
+  </div>
   <div class="lab reveal">
     <figure class="lab__cell lab__cell--compare" data-compare style="--pos:50%">
       <img src="assets/img/seewo/launcher-light.webp" alt="希沃白板 Launcher 浅色模式" width="2000" height="1151" loading="lazy" decoding="async">
