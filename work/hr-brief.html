@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>兴业银行 · 员工行为系统化管理平台设计案例 — 李盼作品集</title>
+<meta name="description" content="我为兴业银行设计了工作台续办与问卷跟进流程。两版原型对照中，返回原待办列表少了两次操作。">
+<meta name="author" content="李盼">
+<meta name="theme-color" content="#fafafa">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="兴业银行 · 员工行为系统化管理平台设计案例 — 李盼作品集">
+<meta property="og:description" content="我为兴业银行设计了工作台续办与问卷跟进流程。两版原型对照中，返回原待办列表少了两次操作。">
+<meta property="og:image" content="../assets/img/hr/brief/workbench.png">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="960">
+<meta property="og:image:alt" content="《UIwork-界面设计》工作台原稿，展示待办任务与常用操作">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css?v=20261122a">
+<link rel="stylesheet" href="../assets/css/hr-showcase.css?v=hr-case-hd">
+<link rel="stylesheet" href="../assets/css/hr-brief.css?v=case-3-sections">
+<script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<header class="nav">
+  <a class="nav__logo" href="../index.html" aria-label="李盼 · 首页">Lp</a>
+  <nav class="nav__pill" aria-label="主导航">
+    <a href="../index.html#work" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg><span>作品</span></a>
+    <a href="../playground.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m16.5 7.5-3 6-6 3 3-6z"/></svg><span data-en="Explore">探索</span></a>
+    <a href="../about.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg><span>关于</span></a>
+    <a href="../assets/lipan-resume.pdf" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>简历</span></a>
+    <span class="nav__sep" aria-hidden="true"></span><button class="nav__lang" type="button" data-lang-toggle data-i18n-skip lang="en" aria-label="Switch to English">EN</button>
+  </nav>
+  <button class="nav__theme" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" data-tip="深色模式" data-label-light="切换到深色模式" data-label-dark="切换到浅色模式" data-tip-light="深色模式" data-tip-dark="浅色模式"><svg class="icon i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="icon i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button>
+  <a class="nav__mail" href="mailto:15510087928@163.com" aria-label="发邮件给李盼" data-tip="15510087928@163.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+</header>
+<main class="page hb-case" data-figma-file="bVDJlubYNqms1DzNEKq0Mi">
+  <header class="hb-hero hb-wrap">
+    <div class="hb-hero-copy">
+      <p class="hb-kicker" data-en="Industrial Bank · HR management system · V1.0 to V2.0">兴业银行 · 人力资源管理系统 V1.0 至 V2.0</p>
+      <h1 data-en="Employee conduct management platform">员工行为系统化管理平台</h1>
+      <p class="hb-deck" data-en="I designed how staff pick up a case where they left off and how administrators find the people who still need a survey reminder.">我负责工作台与问卷排查的交互设计，让经办人能接着办上一条线索，让管理员能从填报进度找到要提醒的人。</p>
+    </div>
+    <figure class="hb-cover">
+      <div class="hb-cover-art">
+        <img class="hb-cover-base zoomable" src="../assets/img/hr/workspace-home.webp" data-figma-node="0:2" width="4320" height="2880" alt="工作台的指标、待办与常用操作" fetchpriority="high" decoding="async">
+        <img class="hb-cover-task zoomable" src="../assets/img/hr/brief/workbench-tasks.webp" data-figma-node="0:2" width="2040" height="1176" alt="工作台局部，我的待办按全部、问卷和线索分类" decoding="async">
+      </div>
+      <figcaption data-en="The workbench and its My tasks panel from the UIwork design file.">《UIwork-界面设计》工作台原稿与「我的待办」局部。</figcaption>
+    </figure>
+  </header>
+
+  <nav class="hb-nav hb-wrap" aria-label="案例总览章节">
+    <a href="#problems" data-en="Problem">问题</a>
+    <a href="#solutions" data-en="Solution">方案</a>
+    <a href="#results" data-en="Results">结果</a>
+  </nav>
+
+  <section class="hb-wrap hb-section" id="problems" aria-labelledby="problems-title">
+    <header class="hb-section-head">
+      <h2 id="problems-title" data-en="Problem">问题</h2>
+    </header>
+    <dl class="hb-problems">
+      <div>
+        <dt data-en="Where was the case I just opened?">刚才那条线索在哪一页？</dt>
+        <dd data-en="In the earlier version, a handler opened a record on page two of Cases. On return, the workbench reset to page one of All tasks.">旧版里，经办人从「线索」第 2 页打开记录。一回到工作台，列表就重置为「全部」第 1 页。</dd>
+      </div>
+      <div>
+        <dt data-en="Who still needs a reminder?">这份问卷还要提醒谁？</dt>
+        <dd data-en="An employee needs proof their response arrived. A unit administrator sees a completion rate but needs the names of the people who still owe a response.">员工要确认自己的问卷是否交上去了。单元管理员看到填报率，还要查清本单元谁没交。</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="hb-wrap hb-section" id="solutions" aria-labelledby="solutions-title">
+    <header class="hb-section-head">
+      <h2 id="solutions-title" data-en="Solution">方案</h2>
+    </header>
+    <div class="hb-decisions">
+      <article class="hb-decision">
+        <div class="hb-copy">
+          <h3 data-en="Return to the same list and page">返回时接上原来的待办</h3>
+          <p data-en="I designed the workbench to remember each role’s task filter and page. If the last case is still pending, Resume opens that exact record.">我让工作台按角色记住待办分类和页码。上一条线索仍待处理时，经办人可以点「继续办理」直接打开它。</p>
+        </div>
+        <figure class="hb-screen">
+          <img class="zoomable" src="../assets/img/hr/brief/workbench-tasks.webp" data-figma-node="0:2" width="2040" height="1176" alt="我的待办选中全部，列表显示七项任务中的前四项" loading="lazy" decoding="async">
+          <figcaption data-en="My tasks shows items 1–4 of 7 with All selected.">「我的待办」选中「全部」，当前显示 7 项中的前 4 项。</figcaption>
+        </figure>
+      </article>
+      <article class="hb-decision">
+        <div class="hb-copy">
+          <h3 data-en="A receipt for staff, a roster for follow-up">给员工回执，给管理员名单</h3>
+          <p data-en="I gave employees a receipt they can check themselves. For administrators, I linked survey progress to a roster that keeps people grouped by unit when Outstanding only is selected.">我为员工保留可核对的提交回执，把管理员看到的填报率连到成员名单。勾选「仅展示未提交」后，名单仍按单元分组。</p>
+        </div>
+        <figure class="hb-screen">
+          <img class="zoomable" src="../assets/img/hr/survey-motion/submitted.webp" data-figma-node="0:2259" width="1440" height="960" alt="已提交问卷顶部的时间与回执编号" loading="lazy" decoding="async">
+          <figcaption data-en="Receipt HZ-30 and the submission time sit above the answers.">提交时间与回执编号 HZ-30 显示在答卷上方。</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="hb-wrap hb-section" id="results" aria-labelledby="results-title">
+    <header class="hb-section-head">
+      <h2 id="results-title" data-en="Results">结果</h2>
+    </header>
+    <div class="hb-outcomes">
+      <div>
+        <p class="hb-numeric" aria-hidden="true">2 <span>→</span> 0</p>
+        <h3 data-en="Two fewer actions to restore the queue">返回原列表少了两次操作</h3>
+        <p data-en="I opened the same case in both prototypes. The revised version took me back to page two, saving a filter selection and a page change.">我用两版原型重走同一条线索。新版直接回到第 2 页，省去了重选「线索」和翻页。</p>
+      </div>
+      <div>
+        <p class="hb-numeric" aria-hidden="true">7 <span>/</span> 11</p>
+        <h3 data-en="Seven of eleven people need a reminder">11 人中，7 人待交</h3>
+        <p data-en="In the sample survey, the system administrator can identify four people in Human Resources and three in Planning and Finance to follow up with. Unit administrators see only their own unit.">在示例问卷中，系统管理员能按名单跟进人力资源部 4 人、计划财务部 3 人。单元管理员只看本单元。</p>
+      </div>
+    </div>
+    <div class="hb-roster" data-roster-example>
+      <div class="hb-switch" role="group" aria-label="切换排查统计与填报结果原稿" hidden>
+        <button type="button" aria-controls="survey-stats" aria-pressed="true" data-en="Survey statistics">排查统计</button>
+        <button type="button" aria-controls="survey-results" aria-pressed="false" data-en="Submission results">填报结果</button>
+      </div>
+      <div class="hb-roster-views">
+        <figure class="hb-screen" id="survey-stats">
+          <img class="zoomable" src="../assets/img/hr/survey-motion/stats.webp" data-figma-node="0:2658" width="1440" height="960" alt="排查统计列表中，员工履职与业务操作排查显示四人已填、十一人应填" loading="lazy" decoding="async">
+          <figcaption data-en="Staff duties and operations is 36% complete, with 4 of 11 responses submitted.">「员工履职与业务操作排查」有 4 人已填、11 人应填，填报率为 36%。</figcaption>
+        </figure>
+        <figure class="hb-screen" id="survey-results">
+          <img class="zoomable" src="../assets/img/hr/survey-motion/results.webp" data-figma-node="0:2792" width="1440" height="960" alt="填报结果显示十一人应填、四人已交、七人待交，成员按单元分组" loading="lazy" decoding="async">
+          <figcaption data-en="The system administrator’s roster shows submitted and outstanding responses together under each unit.">系统管理员的名单按单元分组，图中同时列出已交和未交成员。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="hb-end hb-wrap">
+    <a href="hr.html" data-en="Explore the employee conduct workflow">查看员工行为管理流程</a>
+    <a href="../index.html#hr" data-en="Back to portfolio">返回作品集</a>
+  </footer>
+  <div class="hb-wrap">
+    <a class="next" href="meishenghuo.html">
+      <img src="../assets/img/msh/icon.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+      <span><small>下一个项目 · Next</small><strong>欢乐美生活 · 社区商城的 IP 与设计规范</strong></span>
+      <span class="btn btn--dark">查看 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+    </a>
+  </div>
+</main>
+<footer class="footer" id="contact">
+  <div class="eyes" aria-hidden="true"><span class="eye"><i></i></span><span class="eye"><i></i></span></div>
+  <div class="footer__row">
+    <p class="footer__hi">一起聊聊吧。<br>随时欢迎交流设计与合作机会。</p>
+    <div class="footer__icons">
+      <a class="icon-btn" href="mailto:15510087928@163.com" aria-label="发邮件" data-tip="15510087928@163.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+      <a class="icon-btn" href="../assets/lipan-resume.pdf" target="_blank" rel="noopener" aria-label="查看简历" data-tip="简历 PDF"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></a>
+      <button class="icon-btn" type="button" data-copy="lipan798" data-copy-label="已复制微信号" aria-label="复制微信号" data-tip="微信 lipan798"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></button>
+      <a class="icon-btn" href="https://dribbble.com/lipan16229290" target="_blank" rel="noopener" aria-label="Dribbble 主页" data-tip="Dribbble"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg></a>
+    </div>
+  </div>
+  <div class="footer__bottom"><span>© 2026 李盼 · UI / UX Designer</span></div>
+</footer>
+<div class="cursor" aria-hidden="true">
+  <svg class="ring" viewBox="0 0 100 100"><defs><path id="ring-path" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#ring-path">CLICK TO MAIL ME · 点击发邮件 · CLICK TO MAIL ME ·</textPath></text></svg>
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+</div>
+<div class="lightbox hr-lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+  <div class="hr-image-viewport" tabindex="0"><img alt=""></div>
+  <button class="hr-detail-toggle" type="button" aria-pressed="false"><span data-en="Zoom in">放大细节</span><span data-en="Fit image">查看全图</span></button><button class="lightbox__close" type="button" aria-label="关闭预览">×</button></div>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="../assets/js/i18n-en.js?v=portfolio-en-2" defer></script>
+<script src="../assets/js/main.js?v=hr-case-hd" defer></script>
+<script src="../assets/js/hr-brief.js?v=1" defer></script>
+</body>
+</html>

@@ -15,7 +15,7 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css?v=20261122a">
+<link rel="stylesheet" href="assets/css/style.css?v=20261125fan">
 <script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
 </head>
 <body>
@@ -24,7 +24,7 @@
   <a class="nav__logo" href="index.html" aria-label="李盼 · 首页">Lp</a>
   <nav class="nav__pill" aria-label="主导航">
     <a href="index.html#work"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg><span>作品</span></a>
-    <a href="playground.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg><span>插画</span></a>
+    <a href="playground.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m16.5 7.5-3 6-6 3 3-6z"/></svg><span data-en="Explore">探索</span></a>
     <a href="about.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg><span>关于</span></a>
     <a href="assets/lipan-resume.pdf" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>简历</span></a>
     <span class="nav__sep" aria-hidden="true"></span><button class="nav__lang" type="button" data-lang-toggle data-i18n-skip lang="en" aria-label="Switch to English">EN</button>
@@ -35,38 +35,40 @@
 <main class="page">
 <section class="intro-hero">
   <h1 class="intro-hero__title serif">很高兴见到你！</h1>
-  <p class="intro-hero__sub intro-hero__lede">我从事 UI/UX 设计工作已有 8 年，专注于复杂的流程以及体验流畅的界面。</p>
-  <p class="intro-hero__sub intro-hero__lede">我的方法论根植于对用户行为的理解，将设计决策与业务目标紧密结合，<br>并打造视觉效果出色、操作直观且可扩展的产品。</p>
-  <div class="fan" aria-label="照片与作品"><figure class="fan__card " style="--x:-330px;--r:-14deg;--y:18px;--bg-c:#f4f4f5;z-index:3"><img src="assets/img/pg/illu-4.webp" alt="我的插画作品" width="1600" height="1200" loading="lazy" decoding="async"></figure><figure class="fan__card " style="--x:-170px;--r:-7deg;--y:-6px;--bg-c:#f4f4f5;z-index:4"><img src="assets/img/pg/c4d-2.webp" alt="C4D 练习作品" width="1600" height="1600" loading="lazy" decoding="async"></figure><figure class="fan__card " style="--x:0px;--r:0deg;--y:-14px;--bg-c:#f4f4f5;z-index:5"><img src="assets/img/common/portrait.webp" alt="李盼本人照片" width="1000" height="1000" loading="lazy" decoding="async"></figure><figure class="fan__card fan__card--contain" style="--x:170px;--r:7deg;--y:-6px;--bg-c:#ff7a1f;z-index:4"><img src="assets/img/msh/icon.webp" alt="我设计的 IP 形象" width="640" height="640" loading="lazy" decoding="async"></figure><figure class="fan__card fan__card--contain" style="--x:330px;--r:14deg;--y:18px;--bg-c:#fdf2f8;z-index:3"><img src="assets/img/common/hand-tools.webp" alt="常用设计工具" width="1000" height="764" loading="lazy" decoding="async"></figure><span class="sticker" style="--x:-330px;--y:18px;--cr:-14deg;--dx:-.3;--dy:-.64;--ax:0%;--r:6deg;--c:#fdcf00" data-en="Illustration">插画</span><span class="sticker" style="--x:0px;--y:-14px;--cr:0deg;--dx:.3;--dy:-.65;--r:6deg;--c:#a8d8ff">本人 ✌</span><span class="sticker" style="--x:170px;--y:-6px;--cr:7deg;--dx:.2;--dy:.62;--r:-13deg;--c:#dcf7a0">IP 形象</span></div>
+  <p class="intro-hero__sub intro-hero__lede" data-en="I’m Li Pan, a UI/UX designer with eight years of experience turning complex workflows into clear steps.">我是李盼，有 8 年 UI/UX 设计经验，擅长把复杂流程拆成清晰的操作步骤。</p>
+  <p class="intro-hero__sub intro-hero__lede" data-en="I use AI to generate images for brand character studies, turn mockups into interactive web pages, and make short videos that explain workflows.">我用 AI 生成图像，探索品牌角色的造型，也把设计稿做成交互网页，用短视频讲清操作流程。</p>
+  <div class="fan" id="photos" role="group" aria-label="照片墙">
+    <figure class="fan__card" style="--x:-330px;--r:-14deg;--y:18px;z-index:3">
+      <img class="zoomable" src="assets/img/about/ski-day.jpg" alt="穿着彩色滑雪服，在雪道上举起雪杖" width="1279" height="1706" loading="lazy" decoding="async">
+    </figure>
+    <figure class="fan__card" style="--x:-170px;--r:-7deg;--y:-6px;z-index:4">
+      <img class="zoomable" src="assets/img/about/pandacredit-christmas.jpg" alt="PandaCredit 标志旁亮着灯的圣诞树" width="1440" height="1080" loading="lazy" decoding="async">
+    </figure>
+    <figure class="fan__card " style="--x:0px;--r:0deg;--y:-14px;--bg-c:#f4f4f5;z-index:5"><img src="assets/img/common/portrait.webp" alt="李盼本人照片" width="1000" height="1000" loading="lazy" decoding="async"></figure>
+    <figure class="fan__card fan__card--pair" style="--x:170px;--r:7deg;--y:-6px;z-index:4">
+      <img class="zoomable" src="assets/img/about/cvte-group.jpg" alt="CVTE 创业者日「在路上」活动合影" width="2906" height="1080" loading="lazy" decoding="async">
+      <img class="zoomable" src="assets/img/about/mirror-selfie.jpg" alt="穿蓝色衬衫、戴橙色挂绳的镜面自拍" width="1279" height="1706" loading="lazy" decoding="async">
+    </figure>
+    <figure class="fan__card" style="--x:330px;--r:14deg;--y:18px;z-index:3">
+      <img class="zoomable" src="assets/img/about/zcool-audio.jpg" alt="站酷有声音频专栏体验区" width="1080" height="1440" loading="lazy" decoding="async">
+    </figure>
+    <span class="sticker" style="--x:-330px;--y:18px;--cr:-14deg;--dx:-.3;--dy:-.64;--ax:0%;--r:6deg;--c:#fdcf00" data-en="Skiing">滑雪</span>
+    <span class="sticker" style="--x:0px;--y:-14px;--cr:0deg;--dx:.3;--dy:-.65;--r:6deg;--c:#a8d8ff">本人 ✌</span>
+    <span class="sticker" style="--x:170px;--y:-6px;--cr:7deg;--dx:.2;--dy:.62;--r:-13deg;--c:#dcf7a0" data-en="CVTE">CVTE</span>
+  </div>
 </section>
 <div class="about">
   <section class="tldr reveal" aria-label="一屏读完">
     <div><p class="label">现在</p><p><b>寻找 UI/UX 机会</b><br>坐标福州</p></div>
     <div><p class="label">经历</p><p><b>8 年 · 4 家公司</b><br>2018 – 2026</p></div>
-    <div><p class="label">擅长</p><p><b>B 端 SaaS · 设计系统</b><br>移动端 · 交互大屏</p></div>
+    <div><p class="label">擅长</p><p><b data-en="Cross-platform design">多终端设计</b><br><span data-en="AI-assisted design">Ai赋能</span></p></div>
     <div><p class="label">联系</p><p><b>15510087928@163.com</b><br>微信 lipan798</p></div>
-  </section>
-  <section class="prose reveal">
-    <p>我是一名拥有 <b>8 年经验的 UI/UX 设计师</b>，做过 B 端 SaaS 系统、移动端 App、小程序、交互大屏，也做品牌 VI 和运营插画——具备多终端、成熟商业化产品的项目经验。</p>
-    <p>我习惯站在<b>产品的全局</b>去思考设计：先理解业务目标、梳理项目逻辑，再用设计语言把复杂的问题讲清楚。</p>
-  </section>
-  <section class="reveal">
-    <p class="label label--zh">最近在做</p>
-    <div class="prose"><p>在上海艾融软件，我负责<b>兴业银行人力资源管理系统</b>的 UI/UX 设计，覆盖人力规划、人事管理、考勤、薪酬、保险、招聘与绩效考核等核心模块。</p><p>我主导了系统从 <b>V1.0 升级到 V2.0</b> 的全链路体验设计，针对多平台业务联动场景重构交互流程，并搭建了包含 <b>200 余个组件</b>的设计系统：HR 部门操作效率提升 <b>30% 以上</b>，日均误操作率下降 <b>10%</b>，客户满意度提升 <b>30%</b>。</p></div>
-  </section>
-  <section class="reveal">
-    <p class="label label--zh">我的方式</p>
-    <div class="prose"><p>通常从<b>提问</b>开始：问题真正的原因是什么？再通过用户调研、流程梳理找到断点，用原子设计和组件化的方法搭建方案。</p><p>落地阶段，我会与开发紧密协作、推进界面走查，确保设计意图被准确实现。我也能制定设计目标，拆解并分配设计任务，指导团队成员完成设计，并对结果负责。</p></div>
-  </section>
-  <section class="reveal">
-    <p class="label label--zh">设计之外</p>
-    <div class="prose"><p>工作之余，我喜欢用<b>插画</b>表达自己，也玩一点 <b>C4D</b>；会持续关注设计趋势，把经验总结成方法论，在团队里做分享。更多作品在 <a href="https://dribbble.com/lipan16229290" target="_blank" rel="noopener"><b>Dribbble</b></a>。</p></div>
   </section>
   <section class="reveal">
     <p class="label label--zh">工作经历</p>
     <ol class="timeline">
       <li><time>2022.08 – 2026.05</time><div><h3>上海艾融软件股份有限公司 · UI 设计师</h3><p>B 端人力资源管理 SaaS · 设计规范与设计系统</p></div></li>
-      <li><time>2020.10 – 2022.06</time><div><h3>福建恒荣科技服务集团 · UX 设计师</h3><p>美生活社区小程序 · 品牌 IP · 设计规范</p></div></li>
+      <li><time>2020.10 – 2022.06</time><div><h3 data-en="Fujian Hengrong Tech Services · UI Designer">福建恒荣科技服务集团 · UI 设计师</h3><p>美生活社区小程序 · 品牌 IP · 设计规范</p></div></li>
       <li><time>2019.10 – 2020.10</time><div><h3>广州视源电子科技（CVTE）· 视觉设计师</h3><p>MAXHUB / 希沃大屏产品 · 云屏产品线</p></div></li>
       <li><time>2018.01 – 2019.09</time><div><h3>北京小信分信息技术 · UI 设计师</h3><p>海外金融 App Credit dong · 品牌 VI · 交互动效</p></div></li>
     </ol>
@@ -77,8 +79,8 @@
   </section>
   <section class="reveal">
     <p class="label label--zh">工具</p>
-    <div class="tools"><img src="assets/img/common/tools-design.webp" alt="设计工具：Figma、Sketch、Photoshop、Illustrator" width="1400" height="386" class="tools-img" loading="lazy" decoding="async"><img src="assets/img/common/tools-ai.webp" alt="AI 工具：Claude、Midjourney、Flux、Ideogram" width="1400" height="386" class="tools-img" loading="lazy" decoding="async"></div>
-    <ul class="chips" style="margin-top:12px"><li>Figma</li><li>Sketch</li><li>Photoshop</li><li>Illustrator</li><li>After Effects</li><li>Principle</li><li>C4D</li><li>Claude</li><li>Midjourney</li><li>Flux</li><li>Ideogram</li></ul>
+    <div class="tools"><img src="assets/img/common/tools-design.webp" alt="设计工具：Figma、Sketch、Photoshop、Illustrator" width="1400" height="386" class="tools-img" loading="lazy" decoding="async"><img src="assets/img/common/tools-ai.webp" alt="AI 工具：Claude、Codex、Midjourney、Flux" width="1400" height="386" class="tools-img" loading="lazy" decoding="async"></div>
+    <ul class="chips" style="margin-top:12px"><li>Figma</li><li>Sketch</li><li>Photoshop</li><li>Illustrator</li><li>After Effects</li><li>Principle</li><li>C4D</li><li>Claude</li><li>Codex</li><li>Midjourney</li><li>Flux</li></ul>
   </section>
   <section class="reveal" style="margin-bottom:36px">
     <p class="label label--zh">聊聊？</p>
@@ -110,7 +112,7 @@
 </div>
 <div class="lightbox" role="dialog" aria-modal="true" aria-label="图片预览"><img alt=""><button class="lightbox__close" type="button" aria-label="关闭预览">×</button></div>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/i18n-en.js?v=20261122a" defer></script>
+<script src="assets/js/i18n-en.js?v=20261125fan" defer></script>
 <script src="assets/js/main.js?v=20261122a" defer></script>
 </body>
 </html>

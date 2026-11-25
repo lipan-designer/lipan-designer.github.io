@@ -3,20 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>兴业银行 · 人力资源管理系统 — 李盼作品集</title>
-<meta name="description" content="从工作台的待办入口，到组织架构和问卷排查，展示员工与管理员如何在桌面和手机上完成日常工作。">
+<title>兴业银行 · 员工行为管理平台 — 李盼作品集</title>
+<meta name="description" content="以一次员工行为排查为线索，介绍李盼如何设计工作台、问卷填报、线索交办与单元跟进。">
 <meta name="author" content="李盼">
 <meta name="theme-color" content="#fafafa">
 <meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
-<meta property="og:title" content="兴业银行 · 人力资源管理系统 — 李盼作品集">
-<meta property="og:description" content="从工作台的待办入口，到组织架构和问卷排查，展示员工与管理员如何在桌面和手机上完成日常工作。">
+<meta property="og:title" content="兴业银行 · 员工行为管理平台 — 李盼作品集">
+<meta property="og:description" content="以一次员工行为排查为线索，介绍李盼如何设计工作台、问卷填报、线索交办与单元跟进。">
 <meta property="og:image" content="../assets/img/og.jpg">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/instrument-serif-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/lp-serif-sc.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css?v=20261122a">
 <link rel="stylesheet" href="../assets/css/hr-showcase.css?v=hr-case-hd">
+<link rel="stylesheet" href="../assets/css/behavior-case.css?v=conduct-case-1">
 <script>(function(h){var t,l;try{t=localStorage.getItem('lp-theme');l=localStorage.getItem('lp-lang')}catch(e){}if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';if(l!=='en'&&l!=='zh')l=/^zh/i.test(navigator.language||'zh')?'zh':'en';h.setAttribute('data-theme',t);h.setAttribute('data-lang',l);if(l==='en'){h.lang='en';h.classList.add('i18n-wait')}h.classList.add('js')})(document.documentElement)</script>
 </head>
 <body>
@@ -25,7 +26,7 @@
   <a class="nav__logo" href="../index.html" aria-label="李盼 · 首页">Lp</a>
   <nav class="nav__pill" aria-label="主导航">
     <a href="../index.html#work" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg><span>作品</span></a>
-    <a href="../playground.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg><span>插画</span></a>
+    <a href="../playground.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m16.5 7.5-3 6-6 3 3-6z"/></svg><span data-en="Explore">探索</span></a>
     <a href="../about.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg><span>关于</span></a>
     <a href="../assets/lipan-resume.pdf" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>简历</span></a>
     <span class="nav__sep" aria-hidden="true"></span><button class="nav__lang" type="button" data-lang-toggle data-i18n-skip lang="en" aria-label="Switch to English">EN</button>
@@ -33,32 +34,132 @@
   <button class="nav__theme" type="button" data-theme-toggle aria-pressed="false" aria-label="切换到深色模式" data-tip="深色模式" data-label-light="切换到深色模式" data-label-dark="切换到浅色模式" data-tip-light="深色模式" data-tip-dark="浅色模式"><svg class="icon i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg><svg class="icon i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button>
   <a class="nav__mail" href="mailto:15510087928@163.com" aria-label="发邮件给李盼" data-tip="15510087928@163.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
 </header>
-<main class="page hr-case">
-  <header class="cs-hero" style="--g1:#d6e5f1;--g2:#e2e1f6">
+<main class="page hr-case behavior-case">
+  <header class="cs-hero bc-hero" style="--g1:#d6e5f1;--g2:#e2e1f6">
     <p class="cs-hero__kicker">兴业银行 · 人力资源管理系统 — 2022–26</p>
-    <h1 class="cs-hero__title serif">员工行为管理的日常工作流</h1>
-    <p class="hr-lead">从工作台的待办入口，到组织架构和问卷排查，展示员工与管理员如何在桌面和手机上完成日常工作。</p>
+    <h1 class="cs-hero__title serif" data-en="Employee conduct management">员工行为管理平台</h1>
+    <p class="hr-lead" data-en="A survey is due tomorrow. An employee wants to know whether their response was received. A unit administrator needs to know who still needs a reminder. I designed the steps that connect those two moments.">一份问卷明天截止。员工想确认「我交了吗」，单元管理员想知道「还要提醒谁」。我围绕这两个问题，设计了从个人填报到按单元跟进的工作流程。</p>
+    <div class="bc-role"><strong data-en="My contribution">我的设计职责</strong><span data-en="Information architecture, task flows and interface design for desktop and mobile">信息架构、关键任务交互、桌面与移动端界面设计</span></div>
   </header>
-  <div class="cs-wrap">
-    <section class="step">
-      <div class="step__text"><h2 class="step__title">工作台</h2><div class="prose"><p>把待填问卷、待办线索和常用操作集中在一个工作台。</p></div></div>
-      <figure class="panel panel--framed hr-panel hr-panel--workspace">
-        <img class="zoomable" src="../assets/img/hr/workspace-home.webp?v=eb638e8881" alt="工作台的指标、待办与常用操作" width="1440" height="960" loading="lazy" decoding="async">
-      </figure>
+  <div class="cs-wrap bc-wrap">
+    <nav class="bc-nav" aria-label="案例章节">
+      <a href="#context" data-en="Context">项目背景</a>
+      <a href="#product" data-en="Product analysis">产品分析</a>
+      <a href="#architecture" data-en="Architecture">功能架构</a>
+      <a href="#direction" data-en="Design direction">设计方向</a>
+      <a href="#thinking" data-en="Design thinking">设计思维</a>
+      <a href="#my-questionnaires" data-en="Design techniques">设计手法</a>
+      <a href="#efficiency" data-en="Efficiency">提高效率</a>
+    </nav>
+
+    <section class="bc-section" id="context" aria-labelledby="context-title">
+      <header class="bc-section-head">
+        <p class="bc-label" data-en="Project context">项目背景</p>
+        <h2 id="context-title" data-en="Bringing routine conduct reviews online">把员工行为排查纳入日常工作</h2>
+      </header>
+      <div class="bc-copy">
+        <p data-en="Within Industrial Bank’s group HR system, employee conduct sits under personnel oversight. As the group began moving everyday HR workflows online in May 2022, conduct reviews needed to support everyone involved, from individual employees to the people responsible for their unit.">员工行为管理属于兴业集团人力资源体系中的「人事管控」。2022 年 5 月，集团开始按具体业务场景推进人力工作线上化。对行为排查而言，一次任务会经过多个岗位，每个岗位需要的信息都不同。</p>
+        <p data-en="My design scope covered two workflows. In a routine survey, an administrator defines who should respond, employees submit, and each unit follows up. When someone reports a concern, the report moves to an assigned handler and the outcome goes back on the record.">我的设计范围集中在两条业务线上。一条是定期问卷，从确定填报范围、员工提交，到单元跟进。另一条是日常线索，从员工报送材料、管理员交办，到经办人反馈处理结果。</p>
+      </div>
     </section>
-    <section class="step">
-      <div class="step__text"><h2 class="step__title">组织架构</h2><div class="prose"><p>沿着组织树查看银行与下属部门的关系，定位需要管理的单元。</p></div></div>
-      <figure class="panel panel--framed hr-panel hr-panel--organization">
+
+    <section class="bc-section bc-split" id="product" aria-labelledby="product-title">
+      <div class="bc-copy">
+        <header class="bc-section-head">
+          <p class="bc-label" data-en="Product analysis">产品分析</p>
+          <h2 id="product-title" data-en="One survey, three responsibilities">同一份问卷，三种责任</h2>
+        </header>
+        <p data-en="I mapped each role to the decision it needs to make. That determined the entry point, the people visible on screen and the actions available.">我先梳理每个角色需要做的决定，再确定入口、可见范围和页面上的操作。</p>
+        <dl class="bc-roles">
+          <div><dt data-en="Unit member">单元成员</dt><dd data-en="Which survey is due first? My questionnaires shows deadlines, saved drafts and a receipt for each submission.">哪份快到期了？在「我的问卷」看截止时间，继续草稿，提交后查回执。</dd></div>
+          <div><dt data-en="Unit administrator">单元管理员</dt><dd data-en="Who still needs a reminder? Review status opens the unit’s roster and can show only people who have yet to submit.">本单元还差谁？从「排查统计」进入填报详情，筛出尚未提交的成员。</dd></div>
+          <div><dt data-en="System administrator">系统管理员</dt><dd data-en="Who should receive the survey? The administrator maintains unit membership, publishes the survey and can open individual responses for review.">这次排查面向谁？维护人员归属，发布问卷，必要时打开个人答卷核对内容。</dd></div>
+        </dl>
+      </div>
+      <figure class="bc-figure">
         <img class="zoomable" src="../assets/img/hr/organization@2x.webp" alt="组织架构树与管理单元" width="1440" height="960" loading="lazy" decoding="async">
+        <figcaption data-en="The organization tree establishes which unit is responsible for each group of employees.">组织树给出人员归属，也是按单元跟进排查的依据。</figcaption>
       </figure>
     </section>
-    <section class="step" id="my-questionnaires">
-      <div class="step__text"><h2 class="step__title" data-en="My questionnaires">我的问卷</h2><div class="prose"><p data-en="Check questionnaire deadlines and completion status, then open a pending questionnaire to fill it in.">查看问卷的截止时间和填写状态，选择待填问卷开始填写。</p><p><a href="survey-motion.html" data-en="Watch the survey workflow">观看问卷排查动效 ↗</a></p></div></div>
-      <figure class="panel panel--framed hr-panel hr-panel--survey-report">
+
+    <section class="bc-section" id="architecture" aria-labelledby="architecture-title">
+      <header class="bc-section-head">
+        <p class="bc-label" data-en="Functional architecture">功能架构</p>
+        <h2 id="architecture-title" data-en="Where to do the work, and where to manage it">个人办事和管理工作分别从哪里进入？</h2>
+      </header>
+      <p class="bc-body" data-en="I grouped navigation by the job at hand. An employee reporting a concern, a colleague handling it and the administrator assigning it can each reach the same record from their own queue.">我按办事目的组织导航。同一条线索，报送人从「我的报送」查进展，经办人从「待我办理」接手，系统管理员从「线索管理」交办。三个入口指向同一条办理记录。</p>
+      <dl class="bc-architecture">
+        <div><dt data-en="Workspace">工作空间</dt><dd data-en="What do I need to do today?">我今天要办什么？</dd><dd data-en="Workbench, my questionnaires, my reports, assigned tasks and duty checklists">工作台、我的问卷、我的报送、待我办理、工作要点</dd></div>
+        <div><dt data-en="Organization and people">组织与人员</dt><dd data-en="Which unit is responsible?">这件事归哪个单元？</dd><dd data-en="My unit, organization chart, staff management and directory">我的单元、组织架构、人员管理、人员目录</dd></div>
+        <div><dt data-en="Operations">业务管理</dt><dd data-en="Who should act next?">业务进行到哪一步？</dd><dd data-en="Case assignment, survey management, review status and data overview">线索管理、问卷管理、排查统计、数据概览</dd></div>
+        <div><dt data-en="Administration">系统设置</dt><dd data-en="Who can see and act on a record?">谁能查看或办理？</dd><dd data-en="Accounts and role permissions">账号管理、角色权限</dd></div>
+      </dl>
+    </section>
+
+    <section class="bc-section bc-split" id="direction" aria-labelledby="direction-title">
+      <div class="bc-copy">
+        <header class="bc-section-head">
+          <p class="bc-label" data-en="Design direction">设计方向</p>
+          <h2 id="direction-title" data-en="Start with the task someone can act on">让工作台先回答「现在该办哪件事」</h2>
+        </header>
+        <p data-en="A pending count tells you how much work remains. I placed the named task in My to-dos so the employee can open that specific survey. Frequently used actions have their own space for starting new work, such as reporting a concern.">待填数量能说明工作量，还得有一个能打开的任务。我把具体问卷放在「我的待办」，让标题直接通向填写页。「常用操作」单独留给主动发起的工作，例如报送一条新线索。</p>
+        <p data-en="On desktop there is room to compare the queue with unit progress. On mobile I kept the survey title, due date and fill action together. I used the same status names across both, including Draft and Submitted.">桌面端给任务列表和单元进度留足空间。手机端把问卷标题、到期信息和填写入口放在一起。两端沿用「草稿」「已提交」等状态，换一个屏幕仍能认出任务走到了哪一步。</p>
+      </div>
+      <figure class="bc-figure">
+        <img class="zoomable" src="../assets/img/hr/workspace-home.webp?v=eb638e8881" alt="工作台的指标、待办与常用操作" width="1440" height="960" loading="lazy" decoding="async">
+        <figcaption data-en="A to-do opens an existing task. Quick actions start a new one.">「我的待办」打开已有任务，「常用操作」发起新的工作。</figcaption>
+      </figure>
+    </section>
+
+    <section class="bc-section" id="thinking" aria-labelledby="thinking-title">
+      <header class="bc-section-head">
+        <p class="bc-label" data-en="Design thinking">设计思维</p>
+        <h2 id="thinking-title" data-en="Work backwards from the person the administrator needs to contact">从「下一步要联系谁」倒推统计页</h2>
+      </header>
+      <p class="bc-body" data-en="A completion rate tells an administrator how far the review has progressed. Following up requires a name. I designed a path from survey progress to the relevant unit and then to its outstanding members. The employee’s receipt and the administrator’s roster use the same submission status.">完成率能回答进度，跟进时却需要具体姓名。我从管理员最后要找的那份名单倒推，把总览、单元和人员连成一条路径。员工收到回执，管理员也能在名单里看到这次提交。</p>
+      <ol class="bc-sequence">
+        <li><strong data-en="Check the count">看进度</strong><span data-en="Show the percentage with the number submitted and the number expected.">填报率旁并列「已填人数 / 应填人数」，交代百分比的分母。</span></li>
+        <li><strong data-en="Find the unit">找单元</strong><span data-en="Open submission details to see counts and names within the administrator’s scope.">打开「填报详情」，按管理范围查看各单元的提交人数和成员名单。</span></li>
+        <li><strong data-en="Identify who to follow up with">定对象</strong><span data-en="Show only outstanding submissions. This status describes a filing task, leaving the content of a response to a separate review.">勾选「仅展示未提交」得到跟进对象。「未提交」只描述填报进度，行为异常由答卷内容另行核对。</span></li>
+      </ol>
+      <div class="bc-gallery">
+        <figure class="bc-figure"><img class="zoomable" src="../assets/img/hr/survey-report@2x.webp" alt="排查统计中的填报率与已填、应填人数" width="1440" height="960" loading="lazy" decoding="async"><figcaption data-en="Review status shows how far each survey has progressed.">在排查统计中找到需要跟进的问卷。</figcaption></figure>
+        <figure class="bc-figure"><img class="zoomable" src="../assets/img/hr/results@2x.webp" alt="填报详情中按单元展开的成员提交名单" width="1440" height="960" loading="lazy" decoding="async"><figcaption data-en="Submission details show the people behind the total.">在填报详情中找到对应的单元和成员。</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="bc-section bc-split" id="my-questionnaires" aria-labelledby="techniques-title">
+      <div class="bc-copy">
+        <header class="bc-section-head">
+          <p class="bc-label" data-en="Design techniques">设计手法</p>
+          <h2 id="techniques-title" data-en="Give each form state its own next action">让每种填报状态都有对应的动作</h2>
+        </header>
+        <p data-en="In My questionnaires, I paired status with action. A draft offers Continue. A submitted survey offers View receipt, which shows the time and reference number. Text labels carry the meaning alongside colour.">在「我的问卷」里，我把状态词和动作配成对。草稿显示「继续填写」，已提交显示「查看回执」，点开就能核对提交时间和回执编号。颜色负责提示，文字说清含义。</p>
+        <p data-en="Inside the form, choosing No issue completes an ordinary response. Report an issue reveals the person involved and a description. If the employee submits an incomplete form, focus moves to the first unfinished question, with the correction beside it.">进入表单，选择「无异常」即可完成该题。选择「上报异常」时，才展开对象和情况说明。提交时若有漏项，页面定位到第一道未完成题，把提示留在需要修改的位置。</p>
+      </div>
+      <figure class="bc-figure">
         <img class="zoomable" src="../assets/img/hr/questionnaires@2x.webp" alt="我的问卷" width="1440" height="960" loading="lazy" decoding="async">
+        <figcaption data-en="My questionnaires keeps the deadline, submission status and available action on the same row.">「我的问卷」把截止时间、填写状态和当前可用操作放在同一行。</figcaption>
       </figure>
     </section>
-    <a class="btn btn--dark" href="../index.html#hr">返回项目卡片</a>
+
+    <section class="bc-section" id="efficiency" aria-labelledby="efficiency-title">
+      <header class="bc-section-head">
+        <p class="bc-label" data-en="Efficiency">提高效率</p>
+        <h2 id="efficiency-title" data-en="Three places where the workflow saves work">少找一次入口，少核对一份名单</h2>
+      </header>
+      <ul class="bc-effects">
+        <li><strong data-en="Open the right task in one click">一次点击进入指定问卷</strong><span data-en="From the workbench, an employee clicks the named survey in My to-dos and lands on its form, skipping a second search in the survey list.">从工作台点击「我的待办」里的问卷标题，直接进入该份问卷的填写页，省去在列表里再找一遍。</span></li>
+        <li><strong data-en="Resume the answers already saved">中断后从草稿接着填</strong><span data-en="Continuing a saved draft restores the employee’s answers, so they can pick up with the remaining questions.">员工保存草稿后，下次点「继续填写」即可带回已答内容，接着完成剩余题目。</span></li>
+        <li><strong data-en="Generate the follow-up list in place">按单元直接得到待跟进名单</strong><span data-en="The outstanding filter identifies who has yet to respond. Administrators can see their names on the details page and download the full roster for reference.">勾选「仅展示未提交」，页面就列出需要联系的成员，省去手工比对应填和已填两份名单的过程。需要留档时，也可以下载填报名单。</span></li>
+      </ul>
+    </section>
+    <div class="bc-actions"><a class="btn btn--dark" href="../index.html#hr">返回项目卡片</a></div>
+    <a class="next" href="meishenghuo.html">
+      <img src="../assets/img/msh/icon.webp" alt="" width="640" height="640" loading="lazy" decoding="async">
+      <span><small>下一个项目 · Next</small><strong>欢乐美生活 · 社区商城的 IP 与设计规范</strong></span>
+      <span class="btn btn--dark">查看 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+    </a>
   </div>
 </main>
 <footer class="footer" id="contact">
@@ -82,7 +183,7 @@
   <div class="hr-image-viewport" tabindex="0"><img alt=""></div>
   <button class="hr-detail-toggle" type="button" aria-pressed="false"><span data-en="Zoom in">放大细节</span><span data-en="Fit image">查看全图</span></button><button class="lightbox__close" type="button" aria-label="关闭预览">×</button></div>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="../assets/js/i18n-en.js?v=20261124myq" defer></script>
+<script src="../assets/js/i18n-en.js?v=portfolio-en-2" defer></script>
 <script src="../assets/js/main.js?v=hr-case-hd" defer></script>
 </body>
 </html>

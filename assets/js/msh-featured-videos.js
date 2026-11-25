@@ -95,6 +95,11 @@
     schedule();
   }, {threshold: [0, .15, .35, .45, .6, .8, .95, 1]});
   slots.forEach(slot => observer.observe(slot));
+  reel.addEventListener('gallery:copies', event => {
+    for (const tile of event.detail) {
+      tile.querySelectorAll('[data-film-slot]').forEach(slot => observer.observe(slot));
+    }
+  });
   toggle.hidden = false;
   toggle.addEventListener('click', () => {
     paused = !(paused || blocked); blocked = false; updateToggle(); choose();

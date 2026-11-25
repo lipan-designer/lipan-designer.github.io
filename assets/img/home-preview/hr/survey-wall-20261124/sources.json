@@ -1,0 +1,20 @@
+{
+  "fileName": "UIwork-界面设计",
+  "fileKey": "bVDJlubYNqms1DzNEKq0Mi",
+  "pageName": "04 问卷排查",
+  "pageNodeId": "0:1988",
+  "exportDate": "2026-11-24",
+  "width": 1440,
+  "height": 960,
+  "boards": [
+    { "filename": "survey-list.webp", "name": "我的问卷", "nodeId": "0:1989" },
+    { "filename": "fill.webp", "name": "填写问卷", "nodeId": "0:2128" },
+    { "filename": "submitted.webp", "name": "已提交问卷", "nodeId": "0:2259" },
+    { "filename": "manage.webp", "name": "问卷管理", "nodeId": "0:2366" },
+    { "filename": "preview.webp", "name": "问卷预览", "nodeId": "0:2527" },
+    { "filename": "stats.webp", "name": "排查统计", "nodeId": "0:2658" },
+    { "filename": "results.webp", "name": "填报结果", "nodeId": "0:2792" },
+    { "filename": "response.webp", "name": "答卷详情", "nodeId": "0:2911" },
+    { "filename": "sort.webp", "name": "我的问卷 · 最近发布排序菜单", "nodeId": "0:3018" }
+  ]
+}

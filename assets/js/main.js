@@ -360,66 +360,180 @@
     if (d.fonts && d.fonts.ready) d.fonts.ready.then(go); else window.addEventListener('load', go);
   }
 
-  // Touch and trackpad use native scrolling. Mouse dragging only handles the horizontal strip.
+  // The loop owns the scroll geometry. Touch and trackpad retain native scrolling.
   d.querySelectorAll('[data-marquee]').forEach(track => {
     const box = track.parentElement;
     const card = box.closest('.pcard');
-    const controls = card.querySelector('.gallery-controls');
-    const buttons = controls.querySelectorAll('[data-step]');
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     box.tabIndex = 0;
     box.setAttribute('role', 'region');
     const heading = card.querySelector('h2');
     heading.id = card.id + '-title';
     box.setAttribute('aria-labelledby', heading.id);
-    controls.hidden = false;
-    function updateButtons() {
-      buttons[0].disabled = box.scrollLeft < 2;
-      buttons[1].disabled = box.scrollLeft + box.clientWidth >= box.scrollWidth - 2;
+    const loop = window.createProjectGalleryLoop?.(track);
+    if (!loop) return;
+    loop.onCopies(tiles => track.dispatchEvent(new CustomEvent('gallery:copies', {bubbles: true, detail: tiles})));
+
+    const stage = card.parentElement;
+    function measureGallery() {
+      stage.classList.toggle('can-pin', card.offsetHeight + 24 <= window.innerHeight);
+      loop.measure();
     }
-    buttons.forEach(button => button.addEventListener('click', () => {
-      const forward = button.dataset.step === '1';
-      const tiles = Array.from(track.children);
-      const next = (forward ? tiles : tiles.reverse()).find(tile => forward
-        ? tile.offsetLeft > box.scrollLeft + 2 : tile.offsetLeft < box.scrollLeft - 2);
-      box.scrollTo({left: next ? next.offsetLeft : forward ? box.scrollWidth : 0, behavior: motion.matches ? 'auto' : 'smooth'});
-    }));
-    box.addEventListener('scroll', updateButtons, {passive: true});
     if ('ResizeObserver' in window) {
-      const observer = new ResizeObserver(updateButtons);
-      observer.observe(box); observer.observe(track);
-    } else window.addEventListener('resize', updateButtons);
-    updateButtons();
-    card.querySelector('.seewo-mode')?.addEventListener('change', () => { box.scrollLeft = 0; });
+      const observer = new ResizeObserver(measureGallery);
+      observer.observe(card); observer.observe(track);
+    }
+    window.addEventListener('resize', measureGallery);
+    measureGallery();
+    let glideFrame = 0;
+    let pendingStep = 0;
     let drag = null;
+    let automaticGlide = false;
+    function stopGlide() {
+      cancelAnimationFrame(glideFrame);
+      glideFrame = 0;
+      pendingStep = 0;
+      automaticGlide = false;
+    }
+    function animateTravel(distance, duration, isStep = false) {
+      if (motion.matches) { loop.moveBy(distance); return; }
+      const startTime = performance.now();
+      let previous = 0;
+      if (isStep) pendingStep = distance;
+      function frame(now) {
+        const fraction = clamp((now - startTime) / duration, 0, 1);
+        const travelled = distance * (1 - (1 - fraction) ** 3);
+        loop.moveBy(travelled - previous);
+        previous = travelled;
+        if (isStep) pendingStep = distance - travelled;
+        glideFrame = fraction < 1 ? requestAnimationFrame(frame) : 0;
+        if (!glideFrame) automaticGlide = false;
+      }
+      glideFrame = requestAnimationFrame(frame);
+    }
+    box.addEventListener('keydown', event => {
+      if (event.target !== box || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
+      event.preventDefault();
+      if (pendingStep) loop.moveBy(pendingStep);
+      stopGlide();
+      animateTravel(loop.stepDistance(event.key === 'ArrowRight' ? 1 : -1), 270, true);
+    });
+    card.querySelector('.seewo-mode')?.addEventListener('change', () => { stopGlide(); loop.reset(); });
+    box.addEventListener('wheel', stopGlide, {passive: true});
+    motion.addEventListener('change', stopGlide);
     box.addEventListener('pointerdown', event => {
-      if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a,button')) return;
-      drag = {x: event.clientX, left: box.scrollLeft};
+      stopGlide();
+      if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('a,button,input,label')) return;
+      drag = {id: event.pointerId, x: event.clientX, y: event.clientY, time: event.timeStamp, speed: 0, active: false};
       box.setPointerCapture(event.pointerId);
-      box.classList.add('is-grabbing');
     });
     box.addEventListener('pointermove', event => {
-      if (drag) box.scrollLeft = drag.left + drag.x - event.clientX;
+      if (!drag || drag.id !== event.pointerId) return;
+      const dx = drag.x - event.clientX;
+      if (!drag.active) {
+        if (Math.abs(dx) < 4 || Math.abs(dx) < Math.abs(event.clientY - drag.y)) return;
+        drag.active = true;
+        box.classList.add('is-grabbing');
+      }
+      const dt = Math.max(1, event.timeStamp - drag.time);
+      // Smooth release speed over several samples; the artwork itself follows the mouse 1:1.
+      drag.speed += (dx / dt - drag.speed) * (1 - Math.exp(-dt / 32));
+      drag.x = event.clientX;
+      drag.time = event.timeStamp;
+      loop.moveBy(dx);
+    });
+    box.addEventListener('pointerup', event => {
+      if (!drag || drag.id !== event.pointerId || !drag.active || motion.matches) return;
+      const speed = drag.speed * Math.exp(-(event.timeStamp - drag.time) / 32);
+      if (Math.abs(speed) > .12) {
+        const travel = clamp(speed * 145, -box.clientWidth * .45, box.clientWidth * .45);
+        animateTravel(travel, 3 * Math.abs(travel / speed));
+      }
     });
     box.addEventListener('lostpointercapture', () => { drag = null; box.classList.remove('is-grabbing'); });
 
-    const wall = track.querySelector('survey-wall[data-card-preview]');
-    if (!wall || !('IntersectionObserver' in window)) return;
+    const interval = Number(track.dataset.autoplayMs);
+    if (Number.isFinite(interval) && interval > 0 && 'IntersectionObserver' in window) {
+      let timer = 0;
+      let inView = false;
+      let hovered = matchMedia('(any-hover: hover)').matches && box.matches(':hover');
+      const heldPointers = new Set();
+      function canAdvance() {
+        return inView && !d.hidden && d.hasFocus() && !motion.matches && !hovered && !heldPointers.size &&
+          !box.matches(':focus-visible') && !box.querySelector(':focus-visible');
+      }
+      function restartDwell() {
+        clearTimeout(timer);
+        if (!canAdvance()) {
+          if (automaticGlide) stopGlide();
+          return;
+        }
+        timer = setTimeout(() => {
+          if (canAdvance() && !glideFrame) {
+            // A later sticky project may cover this gallery while its box still intersects the viewport.
+            const r = box.getBoundingClientRect();
+            const x = (Math.max(0, r.left) + Math.min(innerWidth, r.right)) / 2;
+            const y = (Math.max(0, r.top) + Math.min(innerHeight, r.bottom)) / 2;
+            if (box.contains(d.elementFromPoint(x, y))) {
+              automaticGlide = true;
+              animateTravel(loop.stepDistance(1), 420);
+            }
+          }
+          restartDwell();
+        }, interval);
+      }
+      new IntersectionObserver(([entry]) => {
+        inView = entry.intersectionRatio >= .5;
+        restartDwell();
+      }, {threshold: .5}).observe(box);
+      box.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') { hovered = true; restartDwell(); } });
+      box.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') { hovered = false; restartDwell(); } });
+      box.addEventListener('pointerdown', e => { heldPointers.add(e.pointerId); restartDwell(); });
+      const release = e => { if (heldPointers.delete(e.pointerId)) restartDwell(); };
+      window.addEventListener('pointerup', release, true);
+      window.addEventListener('pointercancel', release, true);
+      box.addEventListener('focusin', restartDwell);
+      box.addEventListener('focusout', () => queueMicrotask(restartDwell));
+      box.addEventListener('keydown', restartDwell);
+      for (const event of ['wheel', 'scroll']) box.addEventListener(event, restartDwell, {passive: true});
+      window.addEventListener('scroll', restartDwell, {passive: true});
+      window.addEventListener('blur', () => { heldPointers.clear(); restartDwell(); });
+      window.addEventListener('focus', restartDwell);
+      d.addEventListener('visibilitychange', restartDwell);
+      motion.addEventListener('change', restartDwell);
+    }
+
+    if (!track.querySelector('survey-wall[data-card-preview]') || !('IntersectionObserver' in window)) return;
     const allowAutoplay = !matchMedia('(pointer: coarse)').matches && !navigator.connection?.saveData;
     const visible = new Set();
+    const walls = new Map();
     function sync() {
       const play = allowAutoplay && !motion.matches && !d.hidden;
-      for (const tile of track.children) tile.classList.toggle('is-demo', play && visible.has(tile));
-      wall.setPlaying?.(play && visible.has(wall.closest('.tile')));
+      for (const tile of visible) tile.classList.toggle('is-demo', play);
+      const playing = Array.from(walls.values()).find(wall => wall.hasAttribute('data-running'));
+      const phase = playing?.getProgress?.();
+      for (const [tile, wall] of walls) {
+        const active = play && visible.has(tile);
+        if (active && !wall.play && phase != null) wall.setProgress?.(phase);
+        wall.setPlaying?.(active);
+      }
     }
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.intersectionRatio >= .2) visible.add(entry.target);
-        else visible.delete(entry.target);
+        else { visible.delete(entry.target); entry.target.classList.remove('is-demo'); }
       }
       sync();
     }, {threshold: [0, .2]});
-    for (const tile of track.children) observer.observe(tile);
+    function watchTiles(tiles) {
+      for (const tile of tiles) {
+        const wall = tile.querySelector('survey-wall[data-card-preview]');
+        if (wall) walls.set(tile, wall);
+        observer.observe(tile);
+      }
+    }
+    watchTiles(track.querySelectorAll('.tile'));
+    loop.onCopies(watchTiles);
     customElements.whenDefined('survey-wall').then(sync);
     motion.addEventListener('change', sync);
     d.addEventListener('visibilitychange', sync);
