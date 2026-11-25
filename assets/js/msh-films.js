@@ -68,6 +68,9 @@
     video = next;
     observePlayer(next);
     previous.replaceWith(next);
+    // Cancel buffering the old film when the visitor switches clips.
+    previous.querySelector('source').remove();
+    previous.load();
   }
 
   for (const choice of choices) {

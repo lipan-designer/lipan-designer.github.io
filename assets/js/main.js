@@ -361,7 +361,28 @@
   }
 
   // The loop owns the scroll geometry. Touch and trackpad retain native scrolling.
-  d.querySelectorAll('[data-marquee]').forEach(track => {
+  const galleries = d.querySelectorAll('[data-marquee]');
+  // Reserve the sticky section's travel before scrolling, without cloning offscreen media.
+  for (const track of galleries) {
+    const card = track.closest('.pcard');
+    const measureStage = () => card.parentElement.classList.toggle('can-pin', card.offsetHeight + 24 <= innerHeight);
+    measureStage();
+    if ('ResizeObserver' in window) new ResizeObserver(measureStage).observe(card);
+    window.addEventListener('resize', measureStage);
+  }
+  if ('IntersectionObserver' in window) {
+    const approaching = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        approaching.unobserve(entry.target);
+        initGallery(entry.target.querySelector('[data-marquee]'));
+      }
+    }, {rootMargin: '320px 0px'});
+    galleries.forEach(track => approaching.observe(track.parentElement));
+  } else {
+    galleries.forEach(initGallery);
+  }
+  function initGallery(track) {
     const box = track.parentElement;
     const card = box.closest('.pcard');
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -374,9 +395,9 @@
     if (!loop) return;
     loop.onCopies(tiles => track.dispatchEvent(new CustomEvent('gallery:copies', {bubbles: true, detail: tiles})));
 
-    const stage = card.parentElement;
+    const copies = [...track.querySelectorAll('[data-gallery-copy]')];
+    track.dispatchEvent(new CustomEvent('gallery:copies', {bubbles: true, detail: copies}));
     function measureGallery() {
-      stage.classList.toggle('can-pin', card.offsetHeight + 24 <= window.innerHeight);
       loop.measure();
     }
     if ('ResizeObserver' in window) {
@@ -538,7 +559,7 @@
     motion.addEventListener('change', sync);
     d.addEventListener('visibilitychange', sync);
     sync();
-  });
+  }
 
   /* ---------------- playground lab wall ---------------- */
   // before / after: a transparent range input covers the image, so mouse, touch and keyboard all work
@@ -721,9 +742,9 @@
     d.querySelectorAll('.zoomable').forEach(function (img) {
       img.setAttribute('tabindex', '0');
       img.setAttribute('role', 'button');
-      img.addEventListener('click', function () { open(img.currentSrc || img.src, img.alt); });
+      img.addEventListener('click', function () { open(img.src, img.alt); });
       img.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img.currentSrc || img.src, img.alt); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img.src, img.alt); }
       });
     });
     lb.addEventListener('click', close);

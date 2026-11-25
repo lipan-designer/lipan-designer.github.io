@@ -23,6 +23,9 @@
   let raf = 0;
   let releaseTimer = 0;
   let settleTimer = 0;
+  let candidate = null;
+  let candidateSince = 0;
+  let previewTimer = 0;
   let generation = 0;
   const nearby = new Set();
 
@@ -63,7 +66,8 @@
   }
   function choose() {
     raf = 0;
-    if (paused || blocked || document.hidden || !nearby.size) { stop(); return; }
+    clearTimeout(previewTimer);
+    if (paused || blocked || document.hidden || !nearby.size) { candidate = null; stop(); return; }
     const bounds = reel.getBoundingClientRect();
     const top = Math.max(0, bounds.top);
     const bottom = Math.min(innerHeight, bounds.bottom);
@@ -78,7 +82,16 @@
       const score = visible - Math.abs((rect.left + rect.right) / 2 - center) / innerWidth * .45 + (slot === active ? .08 : 0);
       if (score > bestScore) { best = slot; bestScore = score; }
     }
-    if (best) use(best); else stop();
+    if (!best || active !== best) stop();
+    // A passing phone should not start a new MP4 download during a fast swipe.
+    if (candidate !== best) {
+      candidate = best;
+      candidateSince = performance.now();
+    }
+    if (!best) return;
+    const remaining = 200 - (performance.now() - candidateSince);
+    if (remaining > 0) previewTimer = setTimeout(schedule, remaining);
+    else use(best);
   }
   function updateToggle() {
     const en = document.documentElement.dataset.lang === 'en';
